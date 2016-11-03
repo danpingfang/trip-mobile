@@ -2,12 +2,12 @@
   <base-dialog :show="show" :config="dialogConfig">
     <div class="image-code" slot="body">
       <div class="image-code-field">
-        <input class="form-input {{ isError ? ' form-input-error' : '' }}"
+        <input class="form-input {{ isError ? ' form-input-error' : '' }}" autocomplete="false"
                type="tel" minlength="4" maxlength="4" value=""
                v-model="imageCode" @input="onInput" @blur="isValid">
       </div>
       <div class="image-code-tip">输入下图中的字符，不区分大小写</div>
-      <img :src="imageUrl" alt="验证码">
+      <img :src="imageUrl" alt="验证码" autocomplete="false">
       <button type="button" @click="refresh">看不清，换一张</button>
     </div>
   </base-dialog>
@@ -16,7 +16,7 @@
 <script>
   import config from '../../../config';
   import $ from 'jquery';
-  import toast from 'vue-toast-mobile';
+  import messageTip from '../../../common/messageTip';
   import BaseDialog from './BaseDialog';
 
   export default {
@@ -42,12 +42,7 @@
         if (this.isValid()) {
           this.$dispatch('onImageCodeDialogCallback',
             this.imageCode, (errorMessage) => {
-              toast({
-                message: errorMessage,
-                position: 'middle',
-                duration: 3000,
-                className: 'toast-wrap'
-              });
+              messageTip.show(errorMessage);
               this.isError = true;
             });
         }
@@ -57,7 +52,7 @@
       }
     },
     watch: {
-      showImageCode(isShow) {
+      show(isShow) {
         if (isShow) {
           this.getImageCode();
         }
@@ -76,14 +71,14 @@
         this.isValid();
       },
       getImageCode() {
-        const self = this;
         $.ajax({
-          url: `${config.apiUrl}${this.config.url}`,
-          data: Object.assign({}, this.config.params),
+          url: `${config.apiUrl}/account/get_image_code`,
           dataType: 'json',
-          success(response) {
-            self.imageUrl = response.data;
+          xhrFields: {
+            withCredentials: true
           }
+        }).done((response) => {
+          this.imageUrl = response.data;
         });
       },
       refresh() {

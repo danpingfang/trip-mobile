@@ -1,8 +1,8 @@
 <template>
-  <button type="button" @touchend="sendMessageCode"
+  <button type="button" @touchend="handleMessageCode"
           class="button-message-code{{ disable ? ' button-disable' : '' }}">{{ text | getText }}</button>
   <image-code-dialog
-    :show="showImageCode"></image-code-dialog>
+    :show="showImageCodeDialog"></image-code-dialog>
 </template>
 
 <script>
@@ -12,7 +12,7 @@
 
   const TIMER_COUNT = 60;
   export default {
-    props: ['disable', 'config'],
+    props: ['disable'],
     data() {
       return {
         timerStart: false,
@@ -24,7 +24,7 @@
       ImageCodeDialog
     },
     events: {
-      onMessageCodeDialogCallback(imageCode, errorCallback) {
+      onImageCodeDialogCallback(imageCode, errorCallback) {
         this.sendMessageCode(imageCode, errorCallback);
       },
       onCancel() {
@@ -56,10 +56,10 @@
         setTimeout(fn, 1000);
         this.timerStart = true;
       },
-      sendVertifyCode() {
+      handleMessageCode() {
         if (!this.disable && !this.timerStart) {
           this.needImageCode().then((response) => {
-            if (response.data) {
+            if (!response.data) {
               this.showImageCodeDialog = true;
             } else {
               this.sendMessageCode();
@@ -68,15 +68,19 @@
         }
       },
       needImageCode() {
-        const self = this;
         return new Promise((resolve, reject) => {
           $.ajax({
-            url: `${config.apiUrl}${self.config.needImage.url}`,
-            data: self.config.needImage.params || {},
-            dataType: 'json'
+            url: `${config.apiUrl}/account/check_need_image_code`,
+            data: {
+              action: 'verify_code_login'
+            },
+            dataType: 'json',
+            xhrFields: {
+              withCredentials: true
+            }
           }).done((response) => {
             resolve(response);
-          }).error((response) => {
+          }).fail((response) => {
             reject(response);
           });
         });
@@ -84,17 +88,22 @@
       sendMessageCode(imageCode, errorCallback) {
         this.startTimer();
         this.$dispatch('getMessageCodeParams', (params) => {
-          let data = Object.assign({}, this.config.messageCode.params, params);
+          let data = Object.assign({}, {
+            action: 'verify_code_login'
+          }, params);
           if (imageCode) {
             data = Object.assign(data, {
               imageCode
             });
           }
           $.ajax({
-            url: `${config.apiUrl}${this.config.messageCode.url}`,
+            url: `${config.apiUrl}/account/send_verify_code`,
             type: 'post',
             data,
-            dataType: 'json'
+            dataType: 'json',
+            xhrFields: {
+              withCredentials: true
+            }
           }).done((response) => {
             if (response.code === 0) {
               this.showImageCodeDialog = false;

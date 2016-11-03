@@ -13,18 +13,18 @@
         <div class="ui-dialog-footer">
           <slot name="footer">
             <button type="button" class="ui-dialog-button ui-button-confirm"
-                    @click="onConfirm" v-if="config.confirmText">{{
+                    @touchend="onConfirm" v-if="config.confirmText">{{
               config.confirmText }}
             </button>
             <button type="button" class="ui-dialog-button ui-button-cancel"
-                    @click="onCancel" v-if="config.cancelText">{{
+                    @touchend="onCancel" v-if="config.cancelText">{{
               config.cancelText }}
             </button>
           </slot>
         </div>
         <button type="button"
                 class="ui-dialog-close"
-                @click.prevent.stop="onClose"><i class="icon icon-close"></i></button>
+                @touchend.prevent.stop="onClose"><i class="icon icon-close"></i></button>
       </div>
     </div>
   </div>

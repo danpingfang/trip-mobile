@@ -1,7 +1,7 @@
 import getDeviceId from './utils/getDeviceId';
-const domainUrl = 'http://m.oversealive.com';
-const staticUrl = '//s.oversealive.com';
-const apiUrl = 'http://115.159.71.249:4060';
+const domainUrl = 'http://mb-test.lvbaoyou.com';
+const staticUrl = '//s.lvbaoyou.com';
+const apiUrl = 'http://tls-test.lvbaoyou.com';
 
 export default {
   mock: {},
@@ -13,7 +13,7 @@ export default {
   `redirectUrl=${location.href}&deviceId=${getDeviceId()}`,
   whiteListUrls: [
     /^http:\/\/localhost/,
-    /^http:\/\/m-test.oversealive.com/,
-    /^http:\/\/m.oversealive.com/
+    /^http:\/\/mb-test.lvbaoyou.com/,
+    /^http:\/\/m.lvbaoyou.com/
   ]
 };

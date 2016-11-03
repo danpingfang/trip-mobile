@@ -2,14 +2,8 @@
   <validator name="loginform">
     <form class="form login-form" @submit="onSubmit">
       <h2 class="form-title">输入您的手机号</h2>
-      <!--<p class="login-notice">登录后意味着您同意我们的<a href="">《用户协议》</a></p>-->
       <div
         class="form-field{{($loginform.mobile.touched || $loginform.mobile.modified) && $loginform.mobile.invalid ? ' form-field-error' : '' }}">
-        <div class="form-select-container">
-          <select class="form-select" v-model="areaCode">
-            <option value="86" selected="selected">+86</option>
-          </select>
-        </div>
         <input class="form-input" type="tel" minlength="11" maxlength="11"
                name="mobile"
                v-model="account"
@@ -22,8 +16,8 @@
                maxlength="4"
                v-validate:vertify="['messageCode']"
                placeholder="请输入验证码" v-model="messageCode" name="messageCode">
-        <message-code :disable="$loginform.mobile.invalid"
-                     :config="config"></message-code>
+        <div class="separate-line"></div>
+        <message-code :disable="$loginform.mobile.invalid"></message-code>
       </div>
       <div class="extra-field">
         <button type="submit"
@@ -39,7 +33,7 @@
   import $ from 'jquery';
   import getParameterByName from '../../utils/getParameterByName';
   import redirectUrl from '../../utils/redirectUrl';
-  import toast from 'vue-toast-mobile';
+  import messageTip from '../../common/messageTip';
   import config from '../../config';
   import MessageCode from './components/MessageCode';
 
@@ -98,17 +92,14 @@
               weixinCode: this.weixinCode
             },
             dataType: 'json',
-            success(response) {
-              if (response.code === 0) {
-                redirectUrl(true);
-              } else {
-                toast({
-                  message: response.message,
-                  position: 'middle',
-                  duration: 5000,
-                  className: 'toast-wrap'
-                });
-              }
+            xhrFields: {
+              withCredentials: true
+            }
+          }).done((response) => {
+            if (response.code === 0) {
+              redirectUrl(true);
+            } else {
+              messageTip.show(response.message);
             }
           });
         }
