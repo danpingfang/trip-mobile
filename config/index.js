@@ -3,6 +3,7 @@ var path = require('path')
 
 module.exports = {
   entries: {
+    common: './src/styles/common.scss',
     login: './src/apps/login/main.js'
   },
   htmlTemplates: {

@@ -1,19 +1,19 @@
 import getDeviceId from './utils/getDeviceId';
-const domainUrl = 'http://m.oversealive.com';
-const staticUrl = '//s.oversealive.com';
-const apiUrl = 'http://cis.oversealive.com';
+const domainUrl = 'http://mb-test.lvbaoyou.com';
+const staticUrl = '//s-test.lvbaoyou.com';
+const apiUrl = 'http://tls-test.lvbaoyou.com';
 
 export default {
   mock: {},
   domainUrl,
   staticUrl,
-  apiUrl: `${apiUrl}/cis/open/api/v1`,
-  authApiUrl: `${apiUrl}/cis/inner/api/v1`,
-  authUrl: `${domainUrl}/cis/inner/web/redirect/weixin_redirect?` +
+  apiUrl: `${apiUrl}/tls/open/api/v1`,
+  authApiUrl: `${apiUrl}/tls/inner/api/v1`,
+  authUrl: `${domainUrl}/tls/inner/web/redirect/weixin_redirect?` +
   `redirectUrl=${location.href}&deviceId=${getDeviceId()}`,
   whiteListUrls: [
     /^http:\/\/localhost/,
-    /^http:\/\/m-test.oversealive.com/,
-    /^http:\/\/m.oversealive.com/
+    /^http:\/\/mb-test.lvbaoyou.com/,
+    /^http:\/\/m.lvbaoyou.com/
   ]
 };
