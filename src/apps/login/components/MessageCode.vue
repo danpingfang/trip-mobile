@@ -59,7 +59,7 @@
       handleMessageCode() {
         if (!this.disable && !this.timerStart) {
           this.needImageCode().then((response) => {
-            if (!response.data) {
+            if (response.data) {
               this.showImageCodeDialog = true;
             } else {
               this.sendMessageCode();
