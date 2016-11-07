@@ -7,13 +7,15 @@ module.exports = {
     login: './src/apps/login/main.js',
     attractionDetail: './src/apps/attractionDetail/main.js',
     routeDetail: './src/apps/routeDetail/main.js',
-    friendRecommend: './src/apps/friendRecommend/main.js'
+    friendRecommend: './src/apps/friendRecommend/main.js',
+    addRecommend: './src/apps/addRecommend/main.js'
   },
   htmlTemplates: {
     login: './src/apps/login/index.html',
     attractionDetail: './src/apps/attractionDetail/index.html',
     routeDetail: './src/apps/routeDetail/index.html',
-    friendRecommend: './src/apps/friendRecommend/index.html'
+    friendRecommend: './src/apps/friendRecommend/index.html',
+    addRecommend: './src/apps/addRecommend/index.html'
   },
   build: {
     env: require('./prod.env'),
