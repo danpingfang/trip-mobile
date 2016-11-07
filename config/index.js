@@ -5,11 +5,15 @@ module.exports = {
   entries: {
     common: './src/styles/common.scss',
     login: './src/apps/login/main.js',
-    attractionDetail: './src/apps/attractionDetail/main.js'
+    attractionDetail: './src/apps/attractionDetail/main.js',
+    routeDetail: './src/apps/routeDetail/main.js',
+    friendRecommend: './src/apps/friendRecommend/main.js'
   },
   htmlTemplates: {
     login: './src/apps/login/index.html',
-    attractionDetail: './src/apps/attractionDetail/index.html'
+    attractionDetail: './src/apps/attractionDetail/index.html',
+    routeDetail: './src/apps/routeDetail/index.html',
+    friendRecommend: './src/apps/friendRecommend/index.html'
   },
   build: {
     env: require('./prod.env'),
