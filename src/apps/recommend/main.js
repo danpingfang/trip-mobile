@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import $ from 'jquery';
 import config from '../../config';
-import FriendList from './app';
 import VueInfiniteScroll from 'vue-infinite-scroll';
 import Spinner from '../../components/Spinner';
 import LoadEnd from '../../components/LoadEnd';
@@ -30,13 +29,13 @@ new Vue({
     LoadEnd,
     Spinner,
     Empty,
-    FriendList
+    RouteList
   },
   methods: {
     loadMore() {
-      this.getFriendList();
+      this.getRouteList();
     },
-    getFriendList() {
+    getRouteList() {
       const self = this;
       this.busy = true;
       $.ajax({
