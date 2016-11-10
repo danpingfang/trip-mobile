@@ -65,7 +65,6 @@
 <script>
   import $ from 'jquery';
   import config from '../../config';
-  import messageTip from '../../common/messageTip';
   import touchBrokenFix from '../../common/touchBrokenFix';
   import Spinner from '../../components/Spinner';
   import Empty from '../../components/Empty';
@@ -184,10 +183,11 @@
         }
         if (currentType === 'my') {
           this.MyRecommend =
-              (this.MyRecommend || (this.MyRecommend = [])).concat(data.list);
+            (this.MyRecommend || (this.MyRecommend = [])).concat(data.list);
         } else if (currentType === 'others') {
           this.OthersRecommend =
-              (this.OthersRecommend || (this.OthersRecommend = [])).concat(data.list);
+            (this.OthersRecommend || (this.OthersRecommend = [])).
+            concat(data.list);
         }
       }
     }
