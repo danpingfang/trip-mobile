@@ -1,0 +1,15 @@
+.recommend-switcher{
+  padding:16px 16px 0 16px;
+  border-bottom:1px solid #F5F5F5;
+  margin-bottom: 13px;
+  li{
+    display: inline-block;
+    margin-right:30px;
+    font-size: 13px;
+    border-bottom:1px solid transparent;
+    padding:10px 2px;
+  }
+  .selected{
+    border-bottom:1px solid #EB4C5D;
+  }
+}
