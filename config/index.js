@@ -9,7 +9,7 @@ module.exports = {
     routeDetail: './src/apps/routeDetail/main.js',
     friendRecommend: './src/apps/friendRecommend/main.js',
     addRecommend: './src/apps/addRecommend/main.js',
-    recommend: './src/apps/recommend/main.js',
+    // recommend: './src/apps/recommend/main.js',
     photoDetail: './src/apps/photoDetail/main.js'
   },
   htmlTemplates: {
@@ -18,7 +18,7 @@ module.exports = {
     routeDetail: './src/apps/routeDetail/index.html',
     friendRecommend: './src/apps/friendRecommend/index.html',
     addRecommend: './src/apps/addRecommend/index.html',
-    recommend: './src/apps/recommend/index.html',
+    // recommend: './src/apps/recommend/index.html',
     photoDetail: './src/apps/photoDetail/index.html'
   },
   build: {
