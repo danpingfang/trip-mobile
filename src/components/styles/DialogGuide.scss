@@ -1,0 +1,44 @@
+.dialog-guide {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.guide-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 9px;
+  button {
+    display: block;
+    width: 100%;
+    height: 55px;
+    border-radius: 12px;
+    font-size: 20px;
+    color: #525252;
+    background: rgba(252, 252, 252, 0.80);
+  }
+
+  .button-guide-tip {
+    height: 57px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 1px solid #999;
+    font-size: 16px;
+    color: #787878;
+  }
+
+  .button-guide-confirm {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .button-guide-cancel {
+    margin-top: 9px;
+    background-color: #fff;
+  }
+}

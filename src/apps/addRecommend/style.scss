@@ -1,0 +1,47 @@
+@import "../../components/styles/extrainfo";
+body{
+  margin-bottom: 49px;
+}
+.recommend-form{
+  padding:20px 12px 0px 12px;
+  width: 100%;
+  textarea{
+    width: 100%;
+    word-break: break-all;
+    padding:0 8px 0 8px;
+    border:0;
+    border-bottom: 1px solid #F5F5F5;
+    outline: none;
+    color: #5A5A5A;
+    font-size: 15px;
+  }
+}
+.recommend-place{
+  display: flex;
+  display: -webkit-flex;
+  font-size: 15px;
+  line-height: 42px;
+  span a{
+    display: inline-block;
+    .icon{
+      font-size: 15px;
+      color: #C8C7CC;
+    }
+  }
+  .place-name{
+    flex: 1;
+    -webkit-flex:1;
+  }
+}
+.refer-recommend{
+  border-top:#DAE1E7;
+  background-color: #F5F5F5;
+  padding-bottom: 4px;
+  .title{
+    font-size: 13px;
+    color:#A0A0A0;
+    padding:16px 0 12px 12px;
+  }
+
+}
+

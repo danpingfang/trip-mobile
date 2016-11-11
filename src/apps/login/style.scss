@@ -1,0 +1,94 @@
+@import "components/styles/Dialog";
+@import "components/styles/ImageCodeDialog";
+@import "components/styles/MessageCode";
+
+.login-form {
+  padding: 28px;
+}
+
+.separate-line {
+  width: 1px;
+  height: 36px;
+  margin: 0 18px;
+  background-color: #f5f5f5;
+}
+
+.form-title {
+  margin: 22px 0 54px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.form-field {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  margin: -1px 0;
+  padding: 8px 0;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #f5f5f5;
+  font-size: 15px;
+}
+
+.form-field-error {
+  position: relative;
+  border-color: #e2694f;
+}
+
+.form-error-text {
+  margin: 5px 0;
+  font-size: 12px;
+  color: #e2694f;
+}
+
+.form-select-container {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  width: 50px;
+  margin-right: 16px;
+  &:after {
+    content: "";
+    width: 1px;
+    height: 36px;
+    background-color: #dce0e2;
+  }
+}
+
+.form-select {
+  flex: 1;
+  -webkit-flex: 1;
+  color: #7c8389;
+}
+
+.form-input {
+  flex: 1;
+  -webkit-flex: 1;
+  width: 100%;
+  height: 36px;
+  padding: 3px 0;
+  border: 0;
+  line-height: 24px;
+  color: #7c8389;
+}
+
+.extra-field {
+  margin-top: 46px;
+  text-align: center;
+  button {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 2px solid rgba(152, 152, 152, 0.08);
+    font-size: 18px;
+    line-height: 25px;
+    color: #fff;
+    background-color: #57646e;
+  }
+  .button-disable {
+    background-color: #b7c0c8;
+  }
+}
