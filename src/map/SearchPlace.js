@@ -10,7 +10,7 @@ export default class SearchPlace {
   }
 
   add(place) {
-    const markerStyle = config.placeTypges.place.markerStyle;
+    const markerStyle = config.placeTypes.place.markerStyle;
     const marker = new google.maps.Marker(assign({}, markerStyle, {
       map: this.map,
       position: place.geoCoordinate
@@ -21,6 +21,7 @@ export default class SearchPlace {
   }
 
   setInfoWindow(marker, place) {
+    this.clearInfoBox();
     this.infobox = new InfoBox({
       closeBoxURL: '',
       pixelOffset: new google.maps.Size(-150, 10),
@@ -38,6 +39,12 @@ export default class SearchPlace {
     this.map.setCenter(marker.getPosition());
   }
 
+  clearInfoBox() {
+    if (this.infobox) {
+      this.infobox.close();
+    }
+  }
+
   clear(place) {
     const latlng = new google.maps.LatLng(place.geoCoordinate);
     this.markers.map((marker, index) => {
@@ -49,6 +56,6 @@ export default class SearchPlace {
       }
       return marker;
     });
-    this.infobox.close();
+    this.clearInfoBox();
   }
 }

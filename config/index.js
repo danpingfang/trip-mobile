@@ -11,7 +11,7 @@ module.exports = {
     addRecommend: './src/apps/addRecommend/main.js',
     search: './src/apps/search/main.js',
     // recommend: './src/apps/recommend/main.js',
-    photoDetail: './src/apps/photoDetail/main.js'
+    // photoDetail: './src/apps/photoDetail/main.js'
   },
   htmlTemplates: {
     login: './src/apps/login/index.html',
@@ -21,7 +21,7 @@ module.exports = {
     addRecommend: './src/apps/addRecommend/index.html',
     search: './src/apps/search/index.html',
     // recommend: './src/apps/recommend/index.html',
-    photoDetail: './src/apps/photoDetail/index.html'
+    // photoDetail: './src/apps/photoDetail/index.html'
   },
   build: {
     env: require('./prod.env'),
