@@ -1,0 +1,19 @@
+.place-select-bar {
+  z-index: 1000;
+  overflow: hidden;
+  overflow-x: auto;
+  position: fixed;
+  top: 40px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 13px;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, .4);
+  color: #fff;
+  span {
+    white-space: nowrap;
+  }
+}

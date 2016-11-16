@@ -1,0 +1,28 @@
+.place-select-list {
+  display: flex;
+}
+
+.place-select-item {
+  position: relative;
+  margin: 0 6px;
+  padding: 6px 16px;
+  border-radius: 3px;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, .5);
+  white-space: nowrap;
+  color: #525252;
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.button-place-close {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  font-size: 10px;
+  text-align: center;
+  line-height: 12px;
+  background: #b7c0c8;
+  color: #fff;
+}

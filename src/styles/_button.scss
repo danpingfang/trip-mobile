@@ -1,0 +1,28 @@
+.button {
+  padding: 6px 8px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.button-full {
+  display: block;
+  width: 100%;
+  padding: 12px;
+}
+
+.button-fixed {
+  position: fixed;
+  left: 0;
+}
+
+.button-fixed--bottom {
+  bottom: 0;
+}
+
+.button-disable {
+  background-color: #b7c0c8;
+}
+
+.button-confirm {
+  background-color: #eb4c5d;
+}

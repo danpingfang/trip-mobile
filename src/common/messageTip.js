@@ -8,7 +8,7 @@ const messageTip = {
     toast({
       message,
       position: 'middle',
-      duration: 750,
+      duration: 7500,
       className: 'toast-wrap'
     });
     if (type === 'login') {

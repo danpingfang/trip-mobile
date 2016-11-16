@@ -3,6 +3,14 @@ export default {
     enterClass: 'slideInUp',
     leaveClass: 'slideOutDown'
   },
+  slideInLeftRight: {
+    enterClass: 'slideInLeft',
+    leaveClass: 'slideInRight'
+  },
+  slideInRightLeft: {
+    enterClass: 'slideInRight',
+    leaveClass: 'slideInLeft'
+  },
   fade: {
     enterClass: 'fadeIn',
     leaveClass: 'fadeOut'

@@ -1,0 +1,19 @@
+<template>
+  <div class="others-recommend">
+    <div class="author">
+      <img src="" alt="" width="20" height="20"/>
+      <span class="name">Kevin Hunt<em>推荐</em></span>
+    </div>
+    <div class="position">
+      <span>1.断桥残雪 </span>
+      <span>2.花港观鱼 </span>
+      <span>3.西溪湿地公园 </span>
+    </div>
+    <div class="detail-info">
+      <p class="tips">
+        补充信息：关于日本，有人偏爱北海道的浪漫，
+        有人迷恋九州的乡野风，还有人沉醉于东京的时尚潮流与二次元，而我却偏爱关西。
+      </p>
+    </div>
+  </div>
+</template>

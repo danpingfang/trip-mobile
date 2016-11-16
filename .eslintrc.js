@@ -27,6 +27,7 @@ module.exports = {
         'ignorePattern': '\/\/'
       }
     ],
+    'no-underscore-dangle': 0,
     'no-console': 0,
     'no-new': 0
   }

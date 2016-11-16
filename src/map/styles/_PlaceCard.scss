@@ -1,5 +1,5 @@
 .place-card {
-  position: relative;
+  position: absolute;
   border-radius: 6px;
   width: 300px;
   border: 1px solid #eee;
@@ -23,7 +23,7 @@
   border-color: #eee transparent transparent #eee;
 }
 
-.place-content {
+.place-card-content {
   display: flex;
   flex: 1;
   padding: 8px 12px;

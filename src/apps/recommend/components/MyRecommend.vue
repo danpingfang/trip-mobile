@@ -18,9 +18,7 @@
 </template>
 
 <script>
-  import config from '../../../config';
-
   export default {
-    props: ['list', 'redirectUrl'],
+    props: ['list', 'redirectUrl']
   };
 </script>
