@@ -1,6 +1,6 @@
 <template>
   <div class="place-search-container page {{ show ? 'slideIn' : 'slideOut'}}" v-show="show">
-    <search-bar></search-bar>
+    <search-bar v-ref:search-bar></search-bar>
     <place-select-bar :list="recommendList"></place-select-bar>
     <place-map :show="show" v-ref:place-map></place-map>
     <place-list :list="placeList" :show="showPlaceList"
@@ -101,6 +101,9 @@
       },
       confirm() {
         this.show = false;
+        this.placeList = null;
+        this.showPlaceList = false;
+        this.$refs.searchBar.clear();
         this.$dispatch('onAdd', this.recommendList);
       }
     }

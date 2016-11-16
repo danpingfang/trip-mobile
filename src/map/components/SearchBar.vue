@@ -70,6 +70,9 @@
         this.isFocus = true;
         this.showOverlay = true;
       },
+      clear() {
+        this.keyword = '';
+      },
       onCancel() {
         this.isFocus = false;
         this.showOverlay = false;

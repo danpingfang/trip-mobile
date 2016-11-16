@@ -25,7 +25,7 @@
     props: ['show', 'list'],
     watch: {
       list(list) {
-        previousSelect = list[0];
+        previousSelect = list && list[0];
       }
     },
     methods: {

@@ -6,7 +6,7 @@ module.exports = {
     common: './src/styles/common.scss',
     login: './src/apps/login/main.js',
     attractionDetail: './src/apps/attractionDetail/main.js',
-    routeDetail: './src/apps/routeDetail/main.js',
+    // routeDetail: './src/apps/routeDetail/main.js',
     // friendRecommend: './src/apps/friendRecommend/main.js',
     addRecommend: './src/apps/addRecommend/main.js',
     recommend: './src/apps/recommend/main.js',
@@ -15,7 +15,7 @@ module.exports = {
   htmlTemplates: {
     login: './src/apps/login/index.html',
     attractionDetail: './src/apps/attractionDetail/index.html',
-    routeDetail: './src/apps/routeDetail/index.html',
+    // routeDetail: './src/apps/routeDetail/index.html',
     // friendRecommend: './src/apps/friendRecommend/index.html',
     addRecommend: './src/apps/addRecommend/index.html',
     recommend: './src/apps/recommend/index.html',
