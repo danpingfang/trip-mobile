@@ -4,11 +4,11 @@
       <img src="" alt="" width="20" height="20"/>
       <span class="name">Kevin Hunt<em>推荐</em></span>
     </div>
-    <div class="position">
-      <span>1.断桥残雪 </span>
-      <span>2.花港观鱼 </span>
-      <span>3.西溪湿地公园 </span>
-    </div>
+    <ol class="attractions">
+      <li>1.断桥残雪 </li>
+      <li>2.花港观鱼 </li>
+      <li>3.西溪湿地公园 </li>
+    </ol>
     <div class="detail-info">
       <p class="guide">当地人：李长云 13566879687</p>
       <p class="tips">

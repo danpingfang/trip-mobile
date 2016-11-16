@@ -101,11 +101,29 @@ body{
       display: -webkit-flex;
       .sign-container{
         margin-right: 6px;
-        line-height: 32px;
+        padding:4px 0;
         .sign{
+          text-align: center;
           border-radius: 50%;
-          overflow: hidden;
-          vertical-align: middle;
+          width:25px;
+          height:25px;
+          color:#fff;
+          font-size: 16px;
+        }
+        .play{
+          background-color:#70C366;
+        }
+        .eat{
+          background-color:#F38940;
+        }
+        .live{
+          background-color:#90D6CE;
+        }
+        .shopping{
+          background-color:#C45CA5;
+        }
+        .traffic{
+          background-color:#57646E;
         }
       }
       .recommend-title{
@@ -116,6 +134,9 @@ body{
         .position{
           font-size: 10px;
           color:#A0A0A0;
+          .address{
+            margin-left: 4px;
+          }
         }
       }
     }
@@ -123,20 +144,8 @@ body{
       margin-top: 8px;
       border:0.5px solid #DCDCDC;
       border-radius:6px;
-      padding:6px 12px 15px 12px;
-      .images-container{
-        overflow: hidden;
-        margin-right: 1.5%;
-        .image{
-          float:left;
-          width: 31.816%;
-          height:103px;
-          margin:6px 1.52% 0 0;
-          text-align: center;
-        }
-      }
+      padding:12px;
       .detail-info{
-        margin-top: 12px;
         color:#A0A0A0;
         font-size: 10px;
       }

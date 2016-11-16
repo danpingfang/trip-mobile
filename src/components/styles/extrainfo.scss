@@ -70,8 +70,12 @@
       }
     }
   }
-  .position{
+  .attractions {
     margin-bottom: 4px;
+    li{
+      display: inline-block;
+      margin-right: 4px;
+    }
   }
   .detail-info{
     color:#A0A0A0;
