@@ -7,13 +7,10 @@
                 v-ref:placeList></place-list>
     <button v-if="!recommendList && showPlaceList"
             class="button button-full button-fixed button-fixed--bottom button-disable"
-            type="button">
-      完成
-    </button>
+            type="button">完成</button>
     <button v-if="recommendList && showPlaceList" @touchend.prevent.stop="confirm"
             class="button button-full button-fixed button-fixed--bottom button-confirm"
-            type="button">完成
-    </button>
+            type="button">完成</button>
   </div>
 </template>
 

@@ -20,12 +20,26 @@
 </style>
 
 <script>
+  let previousSelect = null;
   export default {
     props: ['show', 'list'],
+    watch: {
+      list(list) {
+        previousSelect = list[0];
+      }
+    },
     methods: {
       selectPlace(item) {
-        item.isSelected = !item.isSelected;
+        if (previousSelect.poiId === item.poiId) {
+          return false;
+        }
+        if (previousSelect) {
+          previousSelect.isSelected = false;
+        }
+        item.isSelected = true;
+        previousSelect = item;
         this.$dispatch('onSelectPlace', item);
+        return item;
       }
     }
   };

@@ -64,6 +64,7 @@
           content: PlaceCardTemplate.render(place)
         });
         this.infobox.open(this.map, marker);
+        this.map.panBy(0, 180);
       },
       removeSearchPlace() {
         if (this.placeSearchMarker) {

@@ -15,7 +15,8 @@ export default {
     </div>
     <button id="place-${place.poiId}" class="button-place-recommend"
       type="button">
-      <i class="icon icon-place-recommend"></i><span>推荐该地点</span>
+      <i class="icon icon-place-recommend"></i>
+      <span>${place.isRecommend ? '已推荐' : '推荐该地点'}</span>
     </button>
     </div>`;
   }
