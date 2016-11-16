@@ -14,9 +14,11 @@
     overflow: hidden;
     li{
       display: inline-block;
-      border-radius: 50%;
-      overflow: hidden;
       margin-right: 6px;
+      img{
+        border-radius: 50%;
+        overflow: hidden;
+      }
     }
   }
 }
