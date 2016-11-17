@@ -83,6 +83,16 @@
     color:#A0A0A0;
     font-size: 10px;
   }
+  .already-adopt{
+    position:absolute;
+    margin-top: -4px;
+    right: 24px;
+    img{
+      border-radius: 50%;
+      overflow: hidden;
+      z-index: 100;
+    }
+  }
 }
 
 .footer{

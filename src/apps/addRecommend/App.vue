@@ -4,15 +4,35 @@
       <textarea class="description" rows=9 placeholder="补充说明..."
                 v-model="description"></textarea>
       <div class="recommend-place" @touchend="onRecommendPlace">
-        <span class="place-name">{{ recommendNames.length > 0 ? recommendNames.join('、') : '推荐地点' }}</span>
+        <span class="place-name">
+          {{ recommendNames.length > 0 ? recommendNames.join('、') : '推荐地点' }}
+        </span>
         <span class="arrow">
-      <i class="icon icon-arrow-right"></i>
-    </span>
+          <i class="icon icon-arrow-right"></i>
+        </span>
       </div>
     </div>
     <div class="refer-recommend">
       <p class="title">看看其他人如何推荐的</p>
-      <recommend-list :list="recommendList"></recommend-list>
+      #foreach($list in $otherRcmdReplys.list)
+      <div class="others-recommend">
+        <div class="author">
+          <span class="name">案例一<em>推荐</em></span>
+        </div>
+        #if("$!list.replyNodes.poiName" != "")
+        <ol class="attractions">
+          #foreach($replyNode in $list.replyNodes)
+          <li>$!replyNode.poiName</li>
+          #end>
+        </ol>
+        #end
+        <div class="detail-info">
+          <p class="tips">
+            补充信息:$!list.remark
+          </p>
+        </div>
+      </div>
+      #end
     </div>
     <button @touchend.prevent.stop="onSubmit"
             class="button button-full button-fixed button-fixed--bottom {{ recommendList ? ' button-confirm' : 'button-disable' }}"
@@ -26,7 +46,6 @@
   import config from '../../config';
   import $ from 'jquery';
   import messageTip from '../../common/messageTip';
-  import RecommendList from './components/RecommendList';
   import PlaceSearch from '../../map/components/PlaceSearch';
 
   const rcmdId = window.jsConfig.rcmdId;
@@ -36,12 +55,10 @@
       return {
         showPlace: false,
         description: null,
-        recommendNames: [],
-        recommendList: null
+        recommendNames: []
       };
     },
     components: {
-      RecommendList,
       PlaceSearch
     },
     events: {
