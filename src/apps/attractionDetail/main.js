@@ -20,8 +20,8 @@ new Vue({
       loading: true,
       endText: '没有更多了～',
       emptyText: '没有数据哦～',
-      startIndex: 20,
-      itemCount: 20,
+      startIndex: 0,
+      itemCount: 15,
       busy: false,
       list: null
     };
@@ -45,10 +45,7 @@ new Vue({
         data: Object.assign(config.mock, {
           startIndex: this.startIndex,
           itemCount: this.itemCount
-        }),
-        xhrFields: {
-          withCredentials: true
-        }
+        })
       }).done((response) => {
         const data = response.data;
         const count = data.count;
