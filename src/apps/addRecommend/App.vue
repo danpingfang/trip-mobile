@@ -35,7 +35,8 @@
       #end
     </div>
     <button @touchend.prevent.stop="onSubmit"
-            class="button button-full button-fixed button-fixed--bottom {{ recommendList ? ' button-confirm' : 'button-disable' }}"
+            class="button button-full button-fixed button-fixed--bottom
+            {{ recommendList ? ' button-confirm' : 'button-disable' }}"
             type="button">发布
     </button>
     <place-search :show.sync="showPlace"></place-search>
@@ -105,7 +106,7 @@
             }
           });
         } else {
-          messageTip.show('推荐地点不能为空');
+          messageTip.show('补充说明不能为空');
           return false;
         }
         return false;

@@ -32,8 +32,18 @@ body{
       white-space: nowrap;
     }
   }
+  .detail{
+    margin-top: 4px;
+    line-height: 22px;
+    overflow: hidden;
+  }
+  .btn-toggle{
+    float:right;
+  }
+  .moving{
+    display:block;
+  }
 }
-
 
 #my-recommend-list,#others-recommend-list{
   display: none;
