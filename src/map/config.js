@@ -1,3 +1,4 @@
+const staticUrl = '//s-test.lvbaoyou.com';
 // 地图默认中心点
 const zoom = 3;
 // 默认坐标
@@ -7,7 +8,7 @@ const placeTypes = {
   place: {
     markerStyle: {
       icon: {
-        url: '/static/images/btn_shuzi2x.png',
+        url: `${staticUrl}/static/images/btn_shuzi2x.png`,
         scaledSize: {
           width: 32,
           height: 32
@@ -24,7 +25,7 @@ const placeTypes = {
     text: '目',
     markerStyle: {
       icon: {
-        url: '/static/images/btn_mudidisuo2x.png',
+        url: `${staticUrl}static/images/btn_mudidisuo2x.png`,
         scaledSize: {
           width: 32,
           height: 32
@@ -37,7 +38,7 @@ const placeTypes = {
     text: '住',
     markerStyle: {
       icon: {
-        url: '/static/images/btn_zhusuo2x.png',
+        url: `${staticUrl}static/images/btn_zhusuo2x.png`,
         scaledSize: {
           width: 32,
           height: 32
@@ -50,7 +51,7 @@ const placeTypes = {
     text: '吃',
     markerStyle: {
       icon: {
-        url: '/static/images/btn_chisuo2x.png',
+        url: `${staticUrl}static/images/btn_chisuo2x.png`,
         scaledSize: {
           width: 32,
           height: 32
@@ -60,10 +61,10 @@ const placeTypes = {
   },
   // 玩：PLAY("play")
   play: {
-    placeText: '玩',
+    text: '玩',
     markerStyle: {
       icon: {
-        url: '/static/images/btn_wansuo2x.png',
+        url: `${staticUrl}static/images/btn_wansuo2x.png`,
         scaledSize: {
           width: 32,
           height: 32
@@ -76,7 +77,7 @@ const placeTypes = {
     placeText: '购',
     markerStyle: {
       icon: {
-        url: '/static/images/btn_maisuo2x.png',
+        url: `${staticUrl}static/images/btn_maisuo2x.png`,
         scaledSize: {
           width: 32,
           height: 32
@@ -89,7 +90,7 @@ const placeTypes = {
     text: '想',
     markerStyle: {
       icon: {
-        url: '/static/images/btn_tuijiansuo2x.png',
+        url: `${staticUrl}static/images/btn_tuijiansuo2x.png`,
         scaledSize: {
           width: 32,
           height: 32
@@ -102,7 +103,7 @@ const placeTypes = {
     text: '交',
     markerStyle: {
       icon: {
-        url: '/static/images/btn_jiaotongsuo2x.png',
+        url: `${staticUrl}static/images/btn_jiaotongsuo2x.png`,
         scaledSize: {
           width: 32,
           height: 32
@@ -115,7 +116,7 @@ const placeTypes = {
     text: '想',
     markerStyle: {
       icon: {
-        url: '/static/images/btn_zhu2x.png',
+        url: `${staticUrl}static/images/btn_zhu2x.png`,
         scaledSize: {
           width: 32,
           height: 32

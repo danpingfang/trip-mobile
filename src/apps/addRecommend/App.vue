@@ -35,8 +35,7 @@
       #end
     </div>
     <button @touchend.prevent.stop="onSubmit"
-            class="button button-full button-fixed button-fixed--bottom
-            {{ recommendList ? ' button-confirm' : 'button-disable' }}"
+            class="button button-full button-fixed button-fixed--bottom {{ recommendList ? ' button-confirm' : 'button-disable' }}"
             type="button">发布
     </button>
     <place-search :show.sync="showPlace"></place-search>
@@ -49,7 +48,7 @@
   import messageTip from '../../common/messageTip';
   import PlaceSearch from '../../map/components/PlaceSearch';
 
-  const rcmdId = window.jsConfig.rcmdId;
+  const lineId = window.jsConfig.lineId;
 
   export default {
     data() {
@@ -100,7 +99,7 @@
             data: {
               mockAccount: 15222918011,
               deviceId: 11,
-              rcmdId,
+              lineId,
               remark: this.description,
               nodes: JSON.stringify(recommendList)
             }

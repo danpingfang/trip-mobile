@@ -1,0 +1,17 @@
+.line-place-bar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  overflow-x: auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 42px;
+  background-color: rgba(235, 75, 92, .6);
+  span {
+    margin: 0 34px;
+    font-size: 14px;
+    color: #ffc9cf;
+  }
+}

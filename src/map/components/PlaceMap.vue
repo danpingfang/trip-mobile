@@ -1,5 +1,5 @@
 <template>
-  <div id="map" class="place-map"></div>
+  <div id="map" class="map"></div>
 </template>
 
 <script>
@@ -8,11 +8,11 @@
   import config from '../config';
   import getLocation from '../utils/getLocation';
   import PlaceCardTemplate from '../templates/PlaceCardTemplate';
-
   export default {
     props: ['show'],
     watch: {
       show(isShow) {
+        console.log(isShow);
         if (isShow) {
           this.init();
         }
@@ -27,6 +27,7 @@
           clickableIcons: false,
           disableDefaultUI: true
         });
+        console.log(mapContainer);
         getLocation().then((center) => {
           if (center) {
             this.map.setCenter(center);
@@ -50,6 +51,54 @@
           }
         });
       },
+      addLinePlace(places) {
+        if (this.linePlaceMarkers) {
+          this.clearLinePlace();
+        }
+        this.linePlaceMarkers = [];
+        this.linePlaceInfoBox = new InfoBubble({
+          distanceY: 98,
+          shadowStyle: 0,
+          closeSrc: 0,
+          arrowSize: 0,
+          minWidth: 300,
+          minHeight: 55,
+          borderWidth: 0,
+          padding: 0,
+          borderColor: 'transparent'
+        });
+        this.linePlacebounds = new google.maps.LatLngBounds();
+        const flightPlanCoordinates = [];
+        places.map((place, index) => {
+          const geo = place.poiGeo;
+          const marker = this.createMarker(geo, assign({},
+            config.placeTypes.place.markerStyle, {
+              label: {
+                text: `${index + 1}`,
+                color: '#eb4c5d'
+              }
+            }));
+          google.maps.event.addListener(marker, 'click', () => {
+            this.linePlaceInfoBox.setContent(
+              PlaceCardTemplate.render('line', place));
+            this.linePlaceInfoBox.open(this.map, marker);
+          });
+          this.linePlacebounds.extend(marker.position);
+          flightPlanCoordinates.push(marker.position);
+          this.linePlaceMarkers.push(marker);
+          return place;
+        });
+        this.linePlaceFlightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          offset: '50%',
+          geodesic: true,
+          strokeColor: '#b7c0c8',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        this.map.fitBounds(this.linePlacebounds);
+        this.linePlaceFlightPath.setMap(this.map);
+      },
       setRecommendButtonText(place) {
         const content = place.isRecommend ? '已推荐' : '推荐该地点';
         $(`#place-${place.poiId}`)
@@ -61,7 +110,7 @@
           pixelOffset: new google.maps.Size(-150, 10),
           enableEventPropagation: true,
           pane: 'floatPane',
-          content: PlaceCardTemplate.render(place)
+          content: PlaceCardTemplate.render('search', place)
         });
         this.infobox.open(this.map, marker);
         this.map.panBy(0, 180);
@@ -77,26 +126,20 @@
           this.infobox.close();
         }
       },
+      clearLinePlace() {
+        this.linePlaceMarkers.map((marker) => {
+          marker.setMap(null);
+          return null;
+        });
+        this.linePlaceInfoBox.setMap(null);
+        this.linePlaceFlightPath.setMap(null);
+      },
       createMarker(position, markerOptions) {
+        console.log(JSON.stringify(markerOptions));
         return new google.maps.Marker(assign({}, markerOptions, {
           map: this.map,
           position
         }));
-      },
-      getPixel(marker) {
-        const scale = Math.pow(2, this.map.getZoom());
-        const nw = new google.maps.LatLng(
-          this.map.getBounds().getNorthEast().lat(),
-          this.map.getBounds().getSouthWest().lng()
-        );
-        const worldCoordinateNW = this.map.getProjection().fromLatLngToPoint(nw);
-        const worldCoordinate = this.map.getProjection().fromLatLngToPoint(
-          marker.getPosition());
-        const pixelOffset = new google.maps.Point(
-          Math.floor((worldCoordinate.x - worldCoordinateNW.x) * scale),
-          Math.floor((worldCoordinate.y - worldCoordinateNW.y) * scale)
-        );
-        console.log(pixelOffset);
       }
     }
   };

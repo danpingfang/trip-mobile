@@ -7,6 +7,7 @@ module.exports = {
   globals: {
     Android: true,
     google: true,
+    InfoBubble: true,
     InfoBox: true
   },
   extends: 'airbnb-base',

@@ -4,22 +4,22 @@ var path = require('path')
 module.exports = {
   entries: {
     common: './src/styles/common.scss',
-    routeDetail:'./src/apps/routeDetail/style.scss',
+    routeDetail:'./src/apps/routeDetail/main.js',
     login: './src/apps/login/main.js',
     attractionDetail: './src/apps/attractionDetail/main.js',
-    // friendRecommend: './src/apps/friendRecommend/main.js',
     addRecommend: './src/apps/addRecommend/main.js',
     recommend: './src/apps/recommend/main.js',
     recommendDetail: './src/apps/recommendDetail/main.js',
+    line: './src/apps/line/main.js'
   },
   htmlTemplates: {
     login: './src/apps/login/index.html',
     routeDetail: './src/apps/routeDetail/index.html',
-    // friendRecommend: './src/apps/friendRecommend/index.html',
     attractionDetail: './src/apps/attractionDetail/index.html',
     addRecommend: './src/apps/addRecommend/index.html',
     recommend: './src/apps/recommend/index.html',
     recommendDetail: './src/apps/recommendDetail/index.html',
+    line: './src/apps/line/index.html',
   },
   build: {
     env: require('./prod.env'),
