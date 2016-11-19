@@ -1,11 +1,6 @@
 <template>
   <div class="ui-text-more{{ isShort ? ' is-short' : '' }}">
-    <p id="{{ mId }}" class="ui-text-content">
-      分为迪士尼乐园(東京ディズニーランド / Tokyo Disneyland)除了娱乐设施，
-      园内的表演和盛装游行也非常精彩。
-      分为迪士尼乐园(東京ディズニーランド / Tokyo Disneyland)除了娱乐设施，
-      园内的表演和盛装游行也非常精彩。
-    </p>
+    <p id="{{ mId }}" class="ui-text-content">{{ content }}</p>
     <button class="ui-text-button1" type="button" @touchend.prevent="onToggle"
             v-if="showButton">展开</button>
     <button class="ui-text-button2" type="button" @touchend.prevent="onToggle"
