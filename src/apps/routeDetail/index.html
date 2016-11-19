@@ -58,13 +58,11 @@
 </p>
 <div class="remark">4个目的地、16个地点、16个推荐</div>
 <div class="position-tags position--tags">
-  <span class="tag current" @touchend="handleTabContent(0)">杭州</span>
-  <span class="tag" @touchend="handleTabContent(1)">苏州</span>
-  <span class="tag">山海</span>
-  <span class="tag">黑龙江</span>
+  <span class="tag {{ currentIndex === 0 ? 'current' : '' }}" @touchend="handleTabContent(0)">杭州</span>
+  <span class="tag {{ currentIndex === 1 ? 'current': '' }}" @touchend="handleTabContent(1)">苏州</span>
 </div>
 <section id="cd-timeline" class="cd-container">
-  <div class="cd-timeline-content" v-show="currentIndex === 0">
+  <div class="cd-timeline-content animated" v-show="currentIndex === 0" transition="fade">
     <div class="cd-timeline-block">
       <div class="dot"></div>
       <div class="recommend-head">
@@ -133,7 +131,7 @@
       </p>
     </div>
   </div>
-  <div class="cd-timeline-content" v-show="currentIndex === 1">
+  <div class="cd-timeline-content animated" v-show="currentIndex === 1" transition="fade">
     <div class="cd-timeline-block">
       <div class="dot"></div>
       <div class="recommend-head">
@@ -141,7 +139,7 @@
           <p class="sign play">住</p>
         </div>
         <div class="recommend-title">
-          <p class="name">断桥残雪</p>
+          <p class="name">断桥残雪test</p>
           <p class="position">中国>杭州
             <em class="address">中国浙江杭州西湖区曙光路66</em>
           </p>

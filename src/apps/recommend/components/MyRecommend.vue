@@ -1,6 +1,6 @@
 <template>
   <div class="my-recommend" v-for="item in list">
-    <a href="">
+    <a href="/tls/inner/web/line/reply/detail?replyId=$!{reply.id}&&redirectUrl={{ redirectUrl }}">
       <div class="already-adopt" v-if="item.status === 'accept'">
         <img src="/static/images/icon_yicaina2x.png" alt="已采纳" width="64" height="64"/>
       </div>
