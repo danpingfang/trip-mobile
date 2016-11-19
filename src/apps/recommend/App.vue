@@ -1,58 +1,41 @@
 <template>
   <div class="head">
-    <p>杭州6日游</p>
+    <p>{{line.title}}</p>
   </div>
-  <div class="relative-person">
-    <p>67865位去过 (关联人物66位）</p>
+  <div class="relative-person" v-if="friendRcmdCount != 0">
+    <p>有{{friendRcmdCount}}个朋友推荐了{{nodeCount}}点</p>
     <ul class="photo-list">
-      <li class="photo">
+      <li class="photo" v-for="friend in friends.list">
         <a href="">
-          <img src="" alt="" width="42" height="42"/>
-        </a>
-      </li>
-      <li class="photo">
-        <a href="">
-          <img src="" alt="" width="42" height="42"/>
-        </a>
-      </li>
-      <li class="photo">
-        <a href="">
-          <img src="" alt="" width="42" height="42"/>
-        </a>
-      </li>
-      <li class="photo">
-        <a href="">
-          <img src="" alt="" width="42" height="42"/>
+          <img :src="friend.avatar"
+               alt="{{friend.nickname}}" width="42" height="42"/>
         </a>
       </li>
     </ul>
   </div>
   <div class="line-space"></div>
   <div class="plan">
-    <p class="title">我最近准备去xxxx，快来帮我推荐地点吧!</p>
+    <p class="title">{{rcmd.remark}}</p>
     <div class="important-information">
-      <span class="evaluate-days">预计天数: 6日游</span>
-      <span class="evaluate-fee">预计费用：￥6000/人</span>
+      <span class="evaluate-days">预计天数: {{line.dayCount}}</span>
+      <span class="evaluate-fee">预计费用：￥{{line.cost}}/人</span>
     </div>
-    <toggle-more :content="user.summary" max-height="44"></toggle-more>
+    <toggle-more :content="line.remark" max-height="44"></toggle-more>
   </div>
   <div class="position-tags position---tags">
-    <span class="tag">杭州</span>
-    <span class="tag">苏州</span>
-    <span class="tag">山海</span>
-    <span class="tag">黑龙江</span>
+    <span class="tag" v-for="gether in lineGethers">
+      {{gether.targetName}}
+    </span>
   </div>
+
   <div class="line-space"></div>
   <div class="recommend-container">
-    <ul class="recommend-switcher">
-      <li class="selected">我推荐</li>
-      <li >别人推荐</li>
-    </ul>
+    <channel-nav :nav-list="navList"></channel-nav>
     <div id="my-recommend-list" class="is-selected">
-      <my-recommend :list="qaList" :redirect-url="currentUrl"></my-recommend>
+      <my-recommend :list="myrecmmendList" :redirect-url="currentUrl"></my-recommend>
     </div>
     <div id="others-recommend-list">
-      <others-recommend :list="qaList" :redirect-url="currentUrl"></others-recommend>
+      <others-recommend :list="othersrecommendList" :redirect-url="currentUrl"></others-recommend>
     </div>
   </div>
   <a href="">
@@ -105,8 +88,8 @@
             `?userId=${user.userId}`
           }
         ],
-        MyRecommend: null,
-        OthersRecommend: null
+        myrecommendList: null,
+        othersrecommendList: null
       };
     },
     components: {
@@ -120,8 +103,8 @@
     },
     events: {
       onActive(item) {
-        this.MyRecommend = null;
-        this.OthersRecommend = null;
+        this.myrecommendList = null;
+        this.othersrecommendList = null;
         this.startIndex = 0;
         this.loading = true;
         this.isEmpty = false;
@@ -182,11 +165,11 @@
           currentType = type;
         }
         if (currentType === 'my') {
-          this.MyRecommend =
-            (this.MyRecommend || (this.MyRecommend = [])).concat(data.list);
+          this.myrecommendList =
+            (this.myrecommendList || (this.myrecommendList = [])).concat(data.list);
         } else if (currentType === 'others') {
-          this.OthersRecommend =
-            (this.OthersRecommend || (this.OthersRecommend = [])).
+          this.othersrecommendList =
+            (this.othersrecommendList || (this.othersrecommendList = [])).
             concat(data.list);
         }
       }
