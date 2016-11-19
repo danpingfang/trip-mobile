@@ -165,8 +165,8 @@
           currentType = type;
         }
         if (currentType === 'my') {
-          this.myrecommendList =
-            (this.myrecommendList || (this.myrecommendList = [])).concat(data.list);
+          this.myrecommendList = (this.myrecommendList ||
+            (this.myrecommendList = [])).concat(data.list);
         } else if (currentType === 'others') {
           this.othersrecommendList =
             (this.othersrecommendList || (this.othersrecommendList = [])).
