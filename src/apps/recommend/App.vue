@@ -6,7 +6,7 @@
     <p>有{{friendRcmdCount}}个朋友推荐了{{nodeCount}}点</p>
     <ul class="photo-list">
       <li class="photo" v-for="friend in friends.list">
-        <a href="">
+        <a href="/tls/inner/web/line/rcmd/replys?lineId=$!{line.lineId}">
           <img :src="friend.avatar"
                alt="{{friend.nickname}}" width="42" height="42"/>
         </a>
@@ -34,14 +34,14 @@
     <div id="my-recommend-list" v-if="myRcmdReplys.list != ''">
       <my-recommend :list="myrecmmendList" :redirect-url="currentUrl"></my-recommend>
     </div>
-    <div class="others-recommend" v-for="item in list">
+    <div id="others-recommend-list" v-if="otherRcmdReplys.list != ''">
       <others-recommend :list="othersrecommendList" :redirect-url="currentUrl"></others-recommend>
     </div>
     <empty :show="isEmpty" :text="emptyText"></empty>
     <load-end :is-end="isEnd" :text="endText"></load-end>
     <spinner :show="loading"></spinner>
   </div>
-  <a href="">
+  <a href="/tls/inner/web/line/rcmd/add">
     <div class="footer">
       <i class="icon icon-trash"></i> 推荐你所去过的地方
     </div>
