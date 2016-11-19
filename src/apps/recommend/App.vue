@@ -31,12 +31,15 @@
   <div class="line-space"></div>
   <div class="recommend-container">
     <channel-nav :nav-list="navList"></channel-nav>
-    <div id="my-recommend-list" class="is-selected">
+    <div id="my-recommend-list" v-if="myRcmdReplys.list != ''">
       <my-recommend :list="myrecmmendList" :redirect-url="currentUrl"></my-recommend>
     </div>
-    <div id="others-recommend-list">
+    <div class="others-recommend" v-for="item in list">
       <others-recommend :list="othersrecommendList" :redirect-url="currentUrl"></others-recommend>
     </div>
+    <empty :show="isEmpty" :text="emptyText"></empty>
+    <load-end :is-end="isEnd" :text="endText"></load-end>
+    <spinner :show="loading"></spinner>
   </div>
   <a href="">
     <div class="footer">
@@ -57,14 +60,14 @@
   import OthersRecommend from './components/OthersRecommend';
   import ToggleMore from './components/ToggleMore';
 
-  const user = window.jsConfig.user;
+  const line = window.jsConfig.line;
   const currentUrl = window.jsConfig.currentUrl;
 
   export default {
     data() {
       return {
         currentUrl,
-        user,
+        line,
         currentItem: null,
         isEmpty: false,
         isEnd: false,
@@ -72,20 +75,19 @@
         endText: '没有更多了',
         loading: true,
         startIndex: 0,
-        itemCount: 20,
+        itemCount: 15,
         busy: false,
         currentType: 'my',
         navList: [
           {
             type: 'my',
             name: '我推荐',
-            url: `${config.apiUrl}/user/whose_article?userId=${user.userId}`
+            url: `${config.apiUrl}/line/my_reply_list?lineId=${line.lineId}`
           },
           {
             type: 'others',
             name: '别人推荐',
-            url: `${config.apiUrl}/question/list_whose_answer` +
-            `?userId=${user.userId}`
+            url: `${config.apiUrl}/line/other_reply_list?lineId=${line.lineId}?`
           }
         ],
         myrecommendList: null,
@@ -166,11 +168,11 @@
         }
         if (currentType === 'my') {
           this.myrecommendList =
-            (this.myrecommendList || (this.myrecommendList = [])).concat(data.list);
+          (this.myrecommendList || (this.myrecommendList = [])).concat(data.list);
         } else if (currentType === 'others') {
           this.othersrecommendList =
-            (this.othersrecommendList || (this.othersrecommendList = [])).
-            concat(data.list);
+          (this.othersrecommendList || (this.othersrecommendList = [])).
+          concat(data.list);
         }
       }
     }
