@@ -3,10 +3,10 @@
     <div class="recommend-head" v-for="item in list">
       <div class="friends-photo">
         <img class="photo" :src="item.user.avatar"
-             alt="{{list.user.nickname}}" width="40" height="40">
+             alt="{{item.user.nickname}}" width="40" height="40">
       </div>
       <div class="recommend-title">
-        <p class="name">{{list.user.nickname}}</p>
+        <p class="name">{{item.user.nickname}}</p>
         <p class="position">推荐地点：
           <em v-for="replyNode in item.replyNodes">
           {{replyNode}}
