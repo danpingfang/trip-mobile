@@ -14,25 +14,19 @@
     </div>
     <div class="refer-recommend">
       <p class="title">看看其他人如何推荐的</p>
-      #foreach($list in $otherRcmdReplys.list)
-      <div class="others-recommend">
+      <div class="others-recommend" v-for="list in otherRcmdReplys.list">
         <div class="author">
           <span class="name">案例一<em>推荐</em></span>
         </div>
-        #if("$!list.replyNodes.poiName" != "")
-        <ol class="attractions">
-          #foreach($replyNode in $list.replyNodes)
-          <li>$!replyNode.poiName</li>
-          #end>
+        <ol class="attractions" v-if="list.replyNodes.poiName != ''">
+          <li v-for="replyNode in list.replyNodes">{{replyNode.poiName}}</li>
         </ol>
-        #end
         <div class="detail-info">
           <p class="tips">
-            补充信息:$!list.remark
+           {{list.remark}}
           </p>
         </div>
       </div>
-      #end
     </div>
     <button @touchend.prevent.stop="onSubmit"
             class="button button-full button-fixed button-fixed--bottom {{ recommendList ? ' button-confirm' : 'button-disable' }}"
@@ -91,8 +85,8 @@
         this.showPlace = true;
       },
       onSubmit() {
-        const recommendList = this.recommendList;
-        if (description) {
+        const description = this.description;
+        if (description != '') {
           $.ajax({
             type: 'post',
             url: `${config.authApiUrl}/line/rcmd/add`,
