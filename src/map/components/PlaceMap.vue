@@ -12,7 +12,6 @@
     props: ['show'],
     watch: {
       show(isShow) {
-        console.log(isShow);
         if (isShow) {
           this.init();
         }
@@ -27,7 +26,6 @@
           clickableIcons: false,
           disableDefaultUI: true
         });
-        console.log(mapContainer);
         getLocation().then((center) => {
           if (center) {
             this.map.setCenter(center);

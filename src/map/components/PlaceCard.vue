@@ -1,5 +1,5 @@
 <template>
-  <div class="place-card place-card--arrow-up">
+  <div class="place-card place-card--arrow-up" v-if="item">
     <div class="place-card-content">
       <div class="place-type place-type--{{item.poiType}}">
         {{text | getPlaceTypeText}}
