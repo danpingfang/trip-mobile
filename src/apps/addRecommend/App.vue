@@ -92,10 +92,10 @@
       },
       onSubmit() {
         const recommendList = this.recommendList;
-        if (recommendList) {
+        if (description) {
           $.ajax({
             type: 'post',
-            url: `${config.authApiUrl}/line/reply`,
+            url: `${config.authApiUrl}/line/rcmd/add`,
             data: {
               mockAccount: 15222918011,
               deviceId: 11,

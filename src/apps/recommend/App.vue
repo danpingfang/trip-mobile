@@ -4,14 +4,14 @@
   </div>
   <div class="relative-person" v-if="friendRcmdCount != 0">
     <p>有{{friendRcmdCount}}个朋友推荐了{{nodeCount}}点</p>
-    <ul class="photo-list">
-      <li class="photo" v-for="friend in friends.list">
-        <a href="/tls/inner/web/line/rcmd/replys?lineId=$!{line.lineId}">
+    <a href="/tls/inner/web/line/rcmd/replys?lineId={{line.lineId]}">
+      <ul class="photo-list">
+        <li class="photo" v-for="friend in friends.list">
           <img :src="friend.avatar"
                alt="{{friend.nickname}}" width="42" height="42"/>
-        </a>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </a>
   </div>
   <div class="line-space"></div>
   <div class="plan">

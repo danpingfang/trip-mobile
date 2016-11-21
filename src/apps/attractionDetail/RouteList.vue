@@ -3,7 +3,9 @@
     <a href="/tls/open/web/line/share?lineId={{line.lineId}}">
       <div class="routes-cover">
         <p class="routes-title">{{item.title}}</p>
-        <p class="routes-attractions">杭州／西湖／灵隐寺／西溪湿地</p>
+        <p class="routes-attractions" v-for="passDestination in item.passDestinations">
+          {{passDestination}}<em v-if="{{velocityCount}} != {{item.passDestinations.size()">／</em>>
+        </p>
       </div>
       <div class="extra-info">
         <div class="important-information">
