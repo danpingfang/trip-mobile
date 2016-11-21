@@ -92,7 +92,7 @@
       },
       onSubmit() {
         const recommendList = this.recommendList;
-        if (description) {
+        if (this.description) {
           $.ajax({
             type: 'post',
             url: `${config.authApiUrl}/line/rcmd/add`,
