@@ -29,7 +29,7 @@
       </div>
     </div>
     <button @touchend.prevent.stop="onSubmit"
-            class="button button-full button-fixed button-fixed--bottom {{ recommendList ? ' button-confirm' : 'button-disable' }}"
+            class="button button-full button-fixed button-fixed--bottom {{ description ? ' button-confirm' : 'button-disable' }}"
             type="button">发布
     </button>
     <place-search :show.sync="showPlace"></place-search>
@@ -85,8 +85,9 @@
         this.showPlace = true;
       },
       onSubmit() {
+        const recommendList = this.recommendList;
         const description = this.description;
-        if (description != '') {
+        if (description && description !== '') {
           $.ajax({
             type: 'post',
             url: `${config.authApiUrl}/line/rcmd/add`,
