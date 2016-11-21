@@ -18,7 +18,12 @@
 </template>
 
 <script>
+  const list = window.jsConfig.friendList;
   export default {
-    props: ['list']
+    data() {
+      return {
+        list
+      };
+    }
   };
 </script>
