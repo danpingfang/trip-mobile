@@ -11,7 +11,8 @@ module.exports = {
     recommend: './src/apps/recommend/main.js',
     recommendDetail: './src/apps/recommendDetail/main.js',
     line: './src/apps/line/main.js',
-    nearby: './src/apps/nearby/main.js'
+    nearby: './src/apps/nearby/main.js',
+    friendRecommend: './src/apps/friendRecommend/main.js'
   },
   htmlTemplates: {
     login: './src/apps/login/index.html',
@@ -21,7 +22,8 @@ module.exports = {
     recommend: './src/apps/recommend/index.html',
     recommendDetail: './src/apps/recommendDetail/index.html',
     line: './src/apps/line/index.html',
-    nearby: './src/apps/nearby/index.html'
+    nearby: './src/apps/nearby/index.html',
+    friendRecommend: './src/apps/friendRecommend/index.html'
   },
   build: {
     env: require('./prod.env'),
