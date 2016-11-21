@@ -12,7 +12,6 @@ new Vue({
   },
   methods: {
     handleTabContent(index) {
-      console.log(index);
       this.currentIndex = index;
     }
   }

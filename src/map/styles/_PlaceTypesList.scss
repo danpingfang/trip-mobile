@@ -1,0 +1,18 @@
+.place-types-item {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 3px;
+  text-align: center;
+  background: rgba(87, 100, 110, .8);
+  color: #fff;
+  &.active {
+    background-color: #eb4c5d;
+  }
+  .icon {
+    display: block;
+    margin: 0 auto;
+    color: #fff;
+  }
+}
