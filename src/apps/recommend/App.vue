@@ -74,7 +74,7 @@
     jsConfig.myRecommendReplys && jsConfig.myRecommendReplys.list || null;
   const otherRecommendReplys =
     jsConfig.otherRecommendReplys && jsConfig.otherRecommendReplys.list || null;
-  const lineId = jsConfig.line.id;
+  const lineId = jsConfig.line.lineId;
   const navList = [
     {
       type: 'mine',
@@ -90,6 +90,7 @@
   if (!jsConfig.isLogin) {
     navList.splice(0, 1);
   }
+
   export default {
     data() {
       return Object.assign({}, {
@@ -115,7 +116,7 @@
           isLoading: false
         },
         navList
-      }, window.jsConfig);
+      }, jsConfig);
     },
     components: {
       ChannelNav,
