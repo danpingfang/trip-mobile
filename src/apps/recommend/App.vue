@@ -74,6 +74,21 @@
     jsConfig.myRecommendReplys && jsConfig.myRecommendReplys.list || null;
   const otherRecommendReplys =
     jsConfig.otherRecommendReplys && jsConfig.otherRecommendReplys.list || null;
+  const navList = [
+    {
+      type: 'mine',
+      name: '我推荐',
+      url: `${config.apiUrl}/line/my_reply_list?lineId=${jsConfig.lineId}`
+    },
+    {
+      type: 'other',
+      name: '别人推荐',
+      url: `${config.apiUrl}/line/other_reply_list?lineId=${jsConfig.lineId}`
+    }
+  ];
+  if (!jsConfig.isLogin) {
+    navList.splice(0, 1);
+  }
   export default {
     data() {
       return Object.assign({}, {
@@ -98,18 +113,7 @@
           isEnd: false,
           isLoading: false
         },
-        navList: [
-          {
-            type: 'mine',
-            name: '我推荐',
-            url: `${config.apiUrl}/line/my_reply_list?lineId=${this.lineId}`
-          },
-          {
-            type: 'other',
-            name: '别人推荐',
-            url: `${config.apiUrl}/line/other_reply_list?lineId=${this.lineId}?`
-          }
-        ]
+        navList
       }, window.jsConfig);
     },
     components: {
