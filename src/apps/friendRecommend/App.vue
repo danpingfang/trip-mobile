@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  const list = window.jsConfig.friendList;
+  const list = window.jsConfig.friendList.list;
   export default {
     data() {
       return {
