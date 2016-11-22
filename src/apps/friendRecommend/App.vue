@@ -1,6 +1,6 @@
 <template>
   <div class="friend-list">
-    <div class="recommend-head" v-for="item in list">
+    <div class="recommend-head" v-for="item in lists">
       <div class="friends-photo">
         <img class="photo" :src="item.user.avatar"
              alt="{{item.user.nickname}}" width="40" height="40">
@@ -18,11 +18,11 @@
 </template>
 
 <script>
-  const list = window.jsConfig.friendList.list;
+  const lists = window.jsConfig.friendList.list;
   export default {
     data() {
       return {
-        list
+        lists
       };
     }
   };
