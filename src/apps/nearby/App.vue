@@ -19,22 +19,27 @@
         placeItem: null,
         placeTypesList: [
           {
+            iconName: 'eat',
             type: 'eat',
             name: '餐饮'
           },
           {
-            type: 'room',
+            iconName: 'room',
+            type: 'hotel',
             name: '住宿'
           },
           {
-            type: 'scenic',
+            iconName: 'point',
+            type: 'point',
             name: '景点'
           },
           {
-            type: 'shop',
+            iconName: 'shop',
+            type: 'buy',
             name: '购物'
           },
           {
+            iconName: 'traffic',
             type: 'traffic',
             name: '交通'
           }

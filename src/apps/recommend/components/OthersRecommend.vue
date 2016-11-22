@@ -6,13 +6,13 @@
              height="64"/>
       </div>
       <div class="author">
-        <img :src="item.user.avatar"
-             alt="{{item.user.nickname}}" width="20" height="20"/>
-        <span class="name">{{item.user.nickname}}<em>推荐</em></span>
+        <img :src="item.avatar"
+             alt="{{item.nickname}}" width="20" height="20"/>
+        <span class="name">{{item.nickname}}<em>推荐</em></span>
       </div>
       <ol class="attractions"
-          v-if="item.replyNodes && item.replyNodes.length > 0">
-        <li v-for=" replyNode in item.replyNodes">{{replyNode.poiName}}</li>
+          v-if="item.rcmdPoiList && item.rcmdPoiList.length > 0">
+        <li v-for=" replyNode in item.rcmdPoiList">{{replyNode.name}}</li>
       </ol>
       <div class="detail-info">
         <p class="tips">

@@ -41,7 +41,8 @@
       <empty :show="mine.isEmpty"></empty>
       <spinner :show="mine.isLoading"></spinner>
     </div>
-    <div id="others-recommend-list" class="animated" v-show="currentIndex === 1"
+    <div id="others-recommend-list" class="animated"
+         v-show="currentIndex === (!isLogin ? 0 : 1)"
          transition="fade"
          v-if="other.list && other.list.length > 0">
       <others-recommend :list="other.list"></others-recommend>
@@ -75,6 +76,7 @@
   const otherRecommendReplys =
     jsConfig.otherRecommendReplys && jsConfig.otherRecommendReplys.list || null;
   const lineId = jsConfig.line.lineId;
+  const isLogin = jsConfig.isLogin;
   const navList = [
     {
       type: 'mine',
@@ -87,7 +89,7 @@
       url: `${config.apiUrl}/line/other_reply_list?lineId=${lineId}`
     }
   ];
-  if (!jsConfig.isLogin) {
+  if (!isLogin) {
     navList.splice(0, 1);
   }
 
@@ -100,7 +102,7 @@
         startIndex: 0,
         itemCount: 15,
         currentIndex: 0,
-        currentType: 'mine',
+        currentType: isLogin ? 'mine' : 'other',
         mine: {
           list: myRecommendReplys,
           startIndex: 0,
