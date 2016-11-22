@@ -74,16 +74,17 @@
     jsConfig.myRecommendReplys && jsConfig.myRecommendReplys.list || null;
   const otherRecommendReplys =
     jsConfig.otherRecommendReplys && jsConfig.otherRecommendReplys.list || null;
+  const lineId = jsConfig.line.id;
   const navList = [
     {
       type: 'mine',
       name: '我推荐',
-      url: `${config.apiUrl}/line/my_reply_list?lineId=${jsConfig.lineId}`
+      url: `${config.apiUrl}/line/my_reply_list?lineId=${lineId}`
     },
     {
       type: 'other',
       name: '别人推荐',
-      url: `${config.apiUrl}/line/other_reply_list?lineId=${jsConfig.lineId}`
+      url: `${config.apiUrl}/line/other_reply_list?lineId=${lineId}`
     }
   ];
   if (!jsConfig.isLogin) {
