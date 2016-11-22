@@ -81,12 +81,12 @@
     {
       type: 'mine',
       name: '我推荐',
-      url: `${config.apiUrl}/line/my_reply_list?lineId=${lineId}`
+      url: `${config.authApiUrl}/line/my_reply_list?lineId=${lineId}`
     },
     {
       type: 'other',
       name: '别人推荐',
-      url: `${config.apiUrl}/line/other_reply_list?lineId=${lineId}`
+      url: `${config.authApiUrl}/line/other_reply_list?lineId=${lineId}`
     }
   ];
   if (!isLogin) {
@@ -147,10 +147,8 @@
         return this[this.currentType].startIndex;
       },
       getRelyList() {
-        console.log(this.currentType);
-        console.log(this[this.currentType].url);
         $.ajax({
-          url: this[this.currentType].url,
+          url: navList[this.currentIndex].url,
           dataType: 'json',
           data: Object.assign({}, config.mock, {
             startIndex: this.getStartIndex(),
