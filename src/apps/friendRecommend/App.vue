@@ -2,14 +2,14 @@
   <div class="friend-list">
     <div class="recommend-head" v-for="item in lists">
       <div class="friends-photo">
-        <img class="photo" :src="item.user.avatar"
-             alt="{{item.user.nickname}}" width="40" height="40">
+        <img class="photo" :src="item.avatar"
+             alt="{{item.nickname}}" width="40" height="40">
       </div>
       <div class="recommend-title">
-        <p class="name">{{item.user.nickname}}</p>
+        <p class="name">{{item.nickname}}</p>
         <p class="position">推荐地点：
-          <em v-for="replyNode in item.replyNodes">
-          {{replyNode}}
+          <em v-for="rcmdPoiList in item.rcmdPoiList">
+          {{rcmdPoiList}}
           </em>
         </p>
       </div>
