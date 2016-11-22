@@ -13,8 +13,10 @@
     props: ['selectedIndex', 'list'],
     methods: {
       handleTypesClick(item, index) {
-        this.selectedIndex = index;
-        this.$dispatch('onTypesClick', item);
+        if (this.selectedIndex !== index) {
+          this.selectedIndex = index;
+          this.$dispatch('onTypesClick', item);
+        }
       }
     }
   };

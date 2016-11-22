@@ -86,7 +86,7 @@
     {
       type: 'other',
       name: '别人推荐',
-      url: `${config.authApiUrl}/line/other_reply_list?lineId=${lineId}`
+      url: `${config.apiUrl}/line/other_reply_list?lineId=${lineId}`
     }
   ];
   if (!isLogin) {

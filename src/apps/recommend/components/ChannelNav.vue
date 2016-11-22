@@ -17,8 +17,10 @@
     props: ['currentIndex', 'navList'],
     methods: {
       onActive(item, index) {
-        this.currentIndex = index;
-        this.$dispatch('onActive', item, index);
+        if (this.currentIndex !== index) {
+          this.currentIndex = index;
+          this.$dispatch('onActive', item, index);
+        }
       }
     }
   };

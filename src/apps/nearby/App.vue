@@ -8,42 +8,23 @@
 </template>
 
 <script>
+  import config from '../../config';
+  import $ from 'jquery';
   import PlaceMap from '../../map/components/PlaceMap';
   import PlaceCard from '../../map/components/PlaceCard';
   import PlaceTypesList from '../../map/components/PlaceTypesList';
+  const jsConfig = window.jsConfig;
+  const url = `${config.apiUrl}/poi/nearby?` +
+    `poiId=${jsConfig.poiId}&poiGroup=${jsConfig.poiGroup}` +
+    `&source=${jsConfig.source}`;
+  const poiType = jsConfig.poiType;
 
   export default {
     data() {
       return {
         showPlaceMap: false,
         placeItem: null,
-        placeTypesList: [
-          {
-            iconName: 'eat',
-            type: 'eat',
-            name: '餐饮'
-          },
-          {
-            iconName: 'room',
-            type: 'hotel',
-            name: '住宿'
-          },
-          {
-            iconName: 'point',
-            type: 'point',
-            name: '景点'
-          },
-          {
-            iconName: 'shop',
-            type: 'buy',
-            name: '购物'
-          },
-          {
-            iconName: 'traffic',
-            type: 'traffic',
-            name: '交通'
-          }
-        ]
+        placeTypesList: jsConfig.placeTypesList
       };
     },
     components: {
@@ -52,13 +33,36 @@
       PlaceTypesList
     },
     events: {
-      onTypesClick(typeItem) {
-        console.log(typeItem);
+      onTypesClick(item) {
+        this.clear();
+        this.getNearbyList(item.type);
       }
+    },
+    created() {
+      this.getNearbyList(poiType);
     },
     ready() {
       this.showPlaceMap = true;
     },
-    methods: {}
+    methods: {
+      clear() {
+      },
+      getNearbyList(type) {
+        $.ajax({
+          url,
+          dataType: 'json',
+          data: {
+            poiType: type
+          },
+          xhrFields: {
+            withCredentials: true
+          }
+        }).done((response) => {
+          if (response.code === 0) {
+            this.$refs.map.addNearbyPlace(response.data.nearbys);
+          }
+        });
+      }
+    }
   };
 </script>

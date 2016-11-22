@@ -65,7 +65,7 @@
           padding: 0,
           borderColor: 'transparent'
         });
-        this.linePlacebounds = new google.maps.LatLngBounds();
+        const linePlacebounds = new google.maps.LatLngBounds();
         const flightPlanCoordinates = [];
         places.map((place, index) => {
           const geo = place.poiGeo;
@@ -81,7 +81,7 @@
               PlaceCardTemplate.render('line', place));
             this.linePlaceInfoBox.open(this.map, marker);
           });
-          this.linePlacebounds.extend(marker.position);
+          linePlacebounds.extend(marker.position);
           flightPlanCoordinates.push(marker.position);
           this.linePlaceMarkers.push(marker);
           return place;
@@ -94,7 +94,7 @@
           strokeOpacity: 1.0,
           strokeWeight: 2
         });
-        this.map.fitBounds(this.linePlacebounds);
+        this.map.fitBounds(linePlacebounds);
         this.linePlaceFlightPath.setMap(this.map);
       },
       setRecommendButtonText(place) {
@@ -112,6 +112,30 @@
         });
         this.infobox.open(this.map, marker);
         this.map.panBy(0, 180);
+      },
+      addNearbyPlace(places) {
+        if (this.nearbyPlaceMarkers) {
+          this.clearNearbyPlace();
+        }
+        const bounds = new google.maps.LatLngBounds();
+        this.nearbyPlaceMarkers = [];
+        places.map((place) => {
+          const marker = this.createMarker(place.geoCoordinate,
+            config.placeTypes[place.poiType].markerStyle);
+          google.maps.event.addListener(marker, 'click', () => {
+            this.$dispatch('onPlaceMarkerClick', place);
+          });
+          bounds.extend(marker.position);
+          this.nearbyPlaceMarkers.push(marker);
+          return marker;
+        });
+        this.map.fitBounds(bounds);
+      },
+      clearNearbyPlace() {
+        this.nearbyPlaceMarkers.map((marker) => {
+          marker.setMap(null);
+          return null;
+        });
       },
       removeSearchPlace() {
         if (this.placeSearchMarker) {
@@ -133,7 +157,6 @@
         this.linePlaceFlightPath.setMap(null);
       },
       createMarker(position, markerOptions) {
-        console.log(JSON.stringify(markerOptions));
         return new google.maps.Marker(assign({}, markerOptions, {
           map: this.map,
           position
