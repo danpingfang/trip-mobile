@@ -99,7 +99,7 @@
         emptyText: '没有数据哦～',
         endText: '没有更多了',
         busy: false,
-        startIndex: 0,
+        startIndex: 15,
         itemCount: 15,
         currentIndex: 0,
         currentType: isLogin ? 'mine' : 'other',
@@ -146,9 +146,11 @@
       getStartIndex() {
         return this[this.currentType].startIndex;
       },
-      getRelyList(url) {
+      getRelyList() {
+        console.log(this.currentType);
+        console.log(this[this.currentType].url);
         $.ajax({
-          url,
+          url: this[this.currentType].url,
           dataType: 'json',
           data: Object.assign({}, config.mock, {
             startIndex: this.getStartIndex(),
