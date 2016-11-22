@@ -9,7 +9,7 @@
         <p class="name">{{item.nickname}}</p>
         <p class="position">推荐地点：
           <em v-for="rcmdPoiList in item.rcmdPoiList">
-          {{rcmdPoiList}}
+          {{rcmdPoiList.name}}
           </em>
         </p>
       </div>
