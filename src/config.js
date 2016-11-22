@@ -13,7 +13,7 @@ export default {
   `redirectUrl=${location.href}&deviceId=${getDeviceId()}`,
   whiteListUrls: [
     /^http:\/\/localhost/,
-    /^http:\/\/mb-test.lvbaoyou.com/,
-    /^http:\/\/m.lvbaoyou.com/
+    /^http:\/\/tls-test.lvbaoyou.com/,
+    /^http:\/\/tls.lvbaoyou.com/
   ]
 };
