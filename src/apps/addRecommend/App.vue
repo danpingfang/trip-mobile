@@ -37,8 +37,9 @@
 </template>
 
 <script>
-  import config from '../../config';
   import $ from 'jquery';
+  import config from '../../config';
+  import redirectUrl from '../../utils/redirectUrl';
   import messageTip from '../../common/messageTip';
   import PlaceSearch from '../../map/components/PlaceSearch';
 
@@ -90,13 +91,17 @@
         if (description && description !== '') {
           $.ajax({
             type: 'post',
-            url: `${config.authApiUrl}/line/rcmd/add`,
+            url: `${config.authApiUrl}/line/reply`,
             data: {
-              mockAccount: 15222918011,
-              deviceId: 11,
               lineId,
               remark: this.description,
               nodes: JSON.stringify(recommendList)
+            }
+          }).done((response) => {
+            if (response.code === 0) {
+              messageTip.show('推荐成功～', () => {
+                redirectUrl();
+              });
             }
           });
         } else {

@@ -51,7 +51,7 @@
       <spinner :show="other.isLoading"></spinner>
     </div>
   </div>
-  <a href="/tls/inner/web/line/rcmd/add">
+  <a href="/tls/inner/web/line/rcmd/add?redirectUrl={{currentUrl}}&lineId={{lineId}}">
     <div class="footer">
       <i class="icon icon-trash"></i> 推荐你所去过的地方
     </div>
@@ -98,6 +98,7 @@
       return Object.assign({}, {
         emptyText: '没有数据哦～',
         endText: '没有更多了',
+        lineId,
         busy: false,
         startIndex: 15,
         itemCount: 15,
