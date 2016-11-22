@@ -4,6 +4,7 @@ import App from './App';
 
 Vue.use(VueInfiniteScroll);
 
+require('../../animation/animation');
 require('./style.scss');
 
 new Vue({

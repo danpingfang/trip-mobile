@@ -2,9 +2,11 @@
   <div class="ui-text-more{{ isShort ? ' is-short' : '' }}">
     <p id="{{ mId }}" class="ui-text-content">{{ content }}</p>
     <button class="ui-text-button1" type="button" @touchend.prevent="onToggle"
-            v-if="showButton">展开</button>
+            v-if="showButton">展开
+    </button>
     <button class="ui-text-button2" type="button" @touchend.prevent="onToggle"
-            v-if="showButton">收起</button>
+            v-if="showButton">收起
+    </button>
   </div>
 </template>
 
@@ -14,30 +16,35 @@
     margin-bottom: 0;
     line-height: 22px;
     overflow: hidden;
-    font-size:13px;
+    font-size: 13px;
   }
+
   .is-short .ui-text-content {
     max-height: 44px;
   }
+
   .ui-text-button1 {
     display: block;
-    float:right;
+    float: right;
     margin-top: 0;
     font-size: 13px;
-    color:#A4A4A4;
+    color: #a4a4a4;
   }
-  .ui-text-button2{
+
+  .ui-text-button2 {
     display: none;
-    float:right;
+    float: right;
     margin-top: 0;
     font-size: 13px;
-    color:#A4A4A4;
+    color: #a4a4a4;
   }
+
   .is-short .ui-text-button1 {
-    display:none;
+    display: block;
   }
-  .is-short .ui-text-button2{
-    display:block;
+
+  .is-short .ui-text-button2 {
+    display: none;
   }
 </style>
 

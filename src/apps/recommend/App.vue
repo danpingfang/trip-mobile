@@ -3,10 +3,10 @@
     <p>{{line.title}}</p>
   </div>
   <div class="relative-person" v-if="friendRcmdCount != 0">
-    <p>有{{friendRcmdCount}}个朋友推荐了{{nodeCount}}点</p>
+    <p>有{{recommendFriendCount}}个朋友推荐了{{recommendLineCount}}点</p>
     <a href="/tls/inner/web/line/rcmd/replys?lineId={{line.lineId]}">
       <ul class="photo-list">
-        <li class="photo" v-for="friend in friends.list">
+        <li class="photo" v-for="friend in recommendFriendList.list">
           <img :src="friend.avatar"
                alt="{{friend.nickname}}" width="42" height="42"/>
         </li>
@@ -15,7 +15,7 @@
   </div>
   <div class="line-space"></div>
   <div class="plan">
-    <p class="title">{{rcmd.remark}}</p>
+    <p class="title">{{line.inviteNote}}</p>
     <div class="important-information">
       <span class="evaluate-days">预计天数: {{line.dayCount}}</span>
       <span class="evaluate-fee">预计费用：￥{{line.cost}}/人</span>
@@ -23,19 +23,31 @@
     <toggle-more :content="line.remark" max-height="44"></toggle-more>
   </div>
   <div class="position-tags position---tags">
-    <span class="tag" v-for="gether in lineGethers">
-      {{gether.targetName}}
+    <span class="tag" v-for="line in lineList">
+      {{line.targetName}}
     </span>
   </div>
 
   <div class="line-space"></div>
-  <div class="recommend-container">
-    <channel-nav :nav-list="navList"></channel-nav>
-    <div id="my-recommend-list" v-if="myRcmdReplys.list != ''">
-      <my-recommend :list="myrecmmendList" :redirect-url="currentUrl"></my-recommend>
+  <div class="recommend-container" v-infinite-scroll="loadMore()"
+       infinite-scroll-disabled="busy" infinite-scroll-distance="200">
+    <channel-nav :nav-list="navList" :current-index="0"></channel-nav>
+    <div id="my-recommend-list" class="animated" v-show="currentIndex === 0"
+         transition="fade"
+         v-if="mine.list && mine.list.length > 0">
+      <my-recommend :list="mine.list"
+                    :redirect-url="currentUrl"></my-recommend>
+      <load-end :is-end="mine.isEnd"></load-end>
+      <empty :show="mine.isEmpty"></empty>
+      <spinner :show="mine.isLoading"></spinner>
     </div>
-    <div id="others-recommend-list" v-if="otherRcmdReplys.list != ''">
-      <others-recommend :list="othersrecommendList" :redirect-url="currentUrl"></others-recommend>
+    <div id="others-recommend-list" class="animated" v-show="currentIndex === 1"
+         transition="fade"
+         v-if="other.list && other.list.length > 0">
+      <others-recommend :list="other.list"></others-recommend>
+      <load-end :is-end="other.isEnd"></load-end>
+      <empty :show="other.isEmpty"></empty>
+      <spinner :show="other.isLoading"></spinner>
     </div>
   </div>
   <a href="/tls/inner/web/line/rcmd/add">
@@ -57,39 +69,48 @@
   import OthersRecommend from './components/OthersRecommend';
   import ToggleMore from './components/ToggleMore';
 
-  const line = window.jsConfig.line;
-  const currentUrl = window.jsConfig.currentUrl;
-
+  const jsConfig = window.jsConfig;
+  const myRecommendReplys =
+    jsConfig.myRecommendReplys && jsConfig.myRecommendReplys.list || null;
+  const otherRecommendReplys =
+    jsConfig.otherRecommendReplys && jsConfig.otherRecommendReplys.list || null;
   export default {
     data() {
-      return {
-        currentUrl,
-        line,
-        currentItem: null,
-        isEmpty: false,
-        isEnd: false,
+      return Object.assign({}, {
         emptyText: '没有数据哦～',
         endText: '没有更多了',
-        loading: true,
+        busy: false,
         startIndex: 0,
         itemCount: 15,
-        busy: false,
-        currentType: 'my',
+        currentIndex: 0,
+        currentType: 'mine',
+        mine: {
+          list: myRecommendReplys,
+          startIndex: 0,
+          isEmpty: myRecommendReplys === 0,
+          isEnd: false,
+          isLoading: false
+        },
+        other: {
+          list: otherRecommendReplys,
+          startIndex: 0,
+          isEmpty: otherRecommendReplys.length === 0,
+          isEnd: false,
+          isLoading: false
+        },
         navList: [
           {
-            type: 'my',
+            type: 'mine',
             name: '我推荐',
-            url: `${config.apiUrl}/line/my_reply_list?lineId=${line.lineId}`
+            url: `${config.apiUrl}/line/my_reply_list?lineId=${this.lineId}`
           },
           {
-            type: 'others',
+            type: 'other',
             name: '别人推荐',
-            url: `${config.apiUrl}/line/other_reply_list?lineId=${line.lineId}?`
+            url: `${config.apiUrl}/line/other_reply_list?lineId=${this.lineId}?`
           }
-        ],
-        myrecommendList: null,
-        othersrecommendList: null
-      };
+        ]
+      }, window.jsConfig);
     },
     components: {
       ChannelNav,
@@ -101,40 +122,28 @@
       Spinner
     },
     events: {
-      onActive(item) {
-        this.myrecommendList = null;
-        this.othersrecommendList = null;
-        this.startIndex = 0;
-        this.loading = true;
-        this.isEmpty = false;
-        this.isEnd = false;
-        this.currentItem = item;
-        this.getArtList();
+      onActive(item, index) {
+        this.currentIndex = index;
+        this.currentType = item.type;
       }
     },
     ready() {
       touchBrokenFix();
     },
-    created() {
-      this.currentItem = this.navList[0];
-      this.getArtList();
-    },
     methods: {
       loadMore() {
-        this.busy = true;
-        this.getArtList();
+        this.busy = false;
+        this.getRelyList();
       },
-      getArtList() {
-        this.getData(this.currentItem.url, this.currentItem.type);
+      getStartIndex() {
+        return this[this.currentType].startIndex;
       },
-      getData(url, type) {
-        const self = this;
-        this.busy = true;
+      getRelyList(url) {
         $.ajax({
           url,
           dataType: 'json',
           data: Object.assign({}, config.mock, {
-            startIndex: self.startIndex,
+            startIndex: this.getStartIndex(),
             itemCount: self.itemCount
           }),
           xhrFields: {
@@ -142,35 +151,23 @@
           }
         }).done((response) => {
           if (response.code === 0) {
-            const data = response.data;
-            const count = data.count;
-            const isLast = count < self.itemCount;
-            if (count > 0) {
-              this.setData(data, type);
-            }
-            if (type === 'my' || type === 'others') {
-              self.busy = isLast;
-              self.loading = !isLast;
-              self.isEmpty = self.startIndex === 0 && count === 0;
-              self.isEnd = !self.isEmpty && isLast;
-              self.startIndex = data.nextIndex;
-            }
+            this.processData(response.data);
           }
         });
       },
-      setData(data, type) {
-        let currentType = this.currentType;
-        if (type) {
-          currentType = type;
+      processData(data) {
+        const type = this.currentType;
+        const item = this[type];
+        const count = data.count;
+        const isLast = count === 0 || count < item.itemCount;
+        if (count > 0) {
+          item.list =
+            (item.list || (item.list = [])).concat(data.list);
         }
-        if (currentType === 'my') {
-          this.myrecommendList =
-          (this.myrecommendList || (this.myrecommendList = [])).concat(data.list);
-        } else if (currentType === 'others') {
-          this.othersrecommendList =
-          (this.othersrecommendList || (this.othersrecommendList = [])).
-          concat(data.list);
-        }
+        item.busy = isLast;
+        item.loading = !isLast;
+        item.isEnd = !item.isEmpty && isLast;
+        item.startIndex = data.nextIndex;
       }
     }
   };

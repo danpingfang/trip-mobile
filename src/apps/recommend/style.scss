@@ -1,32 +1,39 @@
 @import "../../components/styles/extrainfo";
 @import "/components/styles/ChannelNav";
-body{
-  -webkit-text-size-adjust:100%;
+
+body {
+  -webkit-text-size-adjust: 100%;
   padding-bottom: 49px;
 }
+
 .head {
   text-align: center;
   margin-top: 0;
-  height:75px;
+  height: 75px;
   padding-top: 22px;
   background: black;
   background-size: 100% 100%;
-  p{
+  p {
     font-size: 20px;
-    color:#FFFFFF;
+    color: #fff;
   }
 }
-.plan{
-  padding:16px 16px 30px 16px;
+
+.plan {
+  padding: 16px 16px 30px 16px;
   font-size: 13px;
-  color:#A4A4A4;
-  p{
+  color: #a4a4a4;
+  .title {
     font-size: 15px;
-    color:#57646E;
-    margin-bottom: 10px;
+    color: #57646e;
   }
-  .important-information{
-    span{
+  p {
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #a0a0a0;
+  }
+  .important-information {
+    span {
       margin-right: 12px;
       display: inline-block;
       white-space: nowrap;
