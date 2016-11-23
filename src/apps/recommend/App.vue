@@ -51,7 +51,8 @@
       <spinner :show="other.isLoading"></spinner>
     </div>
   </div>
-  <a href="/tls/inner/web/line/rcmd/add?redirectUrl={{currentUrl}}&lineId={{lineId}}">
+  <a
+    href="/tls/inner/web/line/rcmd/add?redirectUrl={{currentUrl}}&lineId={{lineId}}">
     <div class="footer">
       <i class="icon icon-trash"></i> 推荐你所去过的地方
     </div>
@@ -77,6 +78,7 @@
     jsConfig.otherRecommendReplys && jsConfig.otherRecommendReplys.list || null;
   const lineId = jsConfig.line.lineId;
   const isLogin = jsConfig.isLogin;
+  const currentUrl = jsConfig.currentUrl;
   const navList = [
     {
       type: 'mine',
@@ -99,21 +101,24 @@
         emptyText: '没有数据哦～',
         endText: '没有更多了',
         lineId,
+        currentUrl,
         busy: false,
-        startIndex: 15,
+        startIndex: 10,
         itemCount: 15,
         currentIndex: 0,
         currentType: isLogin ? 'mine' : 'other',
         mine: {
           list: myRecommendReplys,
-          startIndex: 0,
+          startIndex: jsConfig.myRecommendReplys
+                        && jsConfig.myRecommendReplys.nextIndex,
           isEmpty: myRecommendReplys === 0,
           isEnd: false,
           isLoading: false
         },
         other: {
           list: otherRecommendReplys,
-          startIndex: 0,
+          startIndex: jsConfig.otherRecommendReplys
+                        && jsConfig.otherRecommendReplys.nextIndex,
           isEmpty: otherRecommendReplys.length === 0,
           isEnd: false,
           isLoading: false
@@ -132,6 +137,7 @@
     },
     events: {
       onActive(item, index) {
+        this.busy = false;
         this.currentIndex = index;
         this.currentType = item.type;
       }
@@ -141,8 +147,10 @@
     },
     methods: {
       loadMore() {
-        this.busy = false;
-        this.getRelyList();
+        if (!this.busy) {
+          this.busy = true;
+          this.getRelyList();
+        }
       },
       getStartIndex() {
         return this[this.currentType].startIndex;
@@ -167,16 +175,17 @@
       processData(data) {
         const type = this.currentType;
         const item = this[type];
-        const count = data.count;
-        const isLast = count === 0 || count < item.itemCount;
-        if (count > 0) {
+        const nextIndex = data.nextIndex;
+        const isLast = nextIndex === -1;
+        if (nextIndex > 0) {
           item.list =
             (item.list || (item.list = [])).concat(data.list);
         }
-        item.busy = isLast;
+        this.busy = isLast;
         item.loading = !isLast;
         item.isEnd = !item.isEmpty && isLast;
-        item.startIndex = data.nextIndex;
+        item.startIndex = nextIndex;
+        console.log(this[type].nextIndex);
       }
     }
   };

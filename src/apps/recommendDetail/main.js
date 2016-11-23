@@ -3,6 +3,7 @@ import $ from 'jquery';
 import config from '../../config';
 import messageTip from '../../common/messageTip';
 import redirectUrl from '../../utils/redirectUrl';
+import DialogGuide from '../../components/DialogGuide';
 
 require('./style.scss');
 require('./delate');
@@ -14,8 +15,11 @@ new Vue({
       replyId: window.jsConfig.replyId
     };
   },
+  components: {
+    DialogGuide
+  },
   methods: {
-    onDelete() {
+    onDeleteClick() {
       $.ajax({
         url: `${config.authApiUrl}/reply/detail`,
         type: 'post',

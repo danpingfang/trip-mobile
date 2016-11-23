@@ -7,16 +7,23 @@
 </template>
 
 <script>
+  import getParameterByName from '../../utils/getParameterByName';
   import PlaceMap from '../../map/components/PlaceMap';
   import LinePlaceBar from '../../map/components/LinePlaceBar';
 
   let lines = window.jsConfig.lines;
+  let currentIndex = 0;
+  const lineId = getParameterByName('lineId');
+  const targetId = getParameterByName('targetId');
   const all = {
     targetName: '总线路',
     nodes: []
   };
-  lines.map((line) => {
+  lines.map((line, index) => {
     all.nodes = all.nodes.concat(line.nodes);
+    if (line.targetId === targetId) {
+      currentIndex = index + 1;
+    }
     return line;
   });
   lines = [all].concat(lines);
@@ -25,7 +32,7 @@
     data() {
       return {
         showPlaceMap: false,
-        currentIndex: 0,
+        currentIndex,
         lines
       };
     },
@@ -35,12 +42,17 @@
     },
     events: {
       onChangeLinePlace(place) {
+        history.pushState({ lineId, targetId: place.targetId }, null, null);
         this.createPlace(place.nodes);
+        history.go(-1);
       }
     },
     ready() {
       this.$refs.map.init();
       this.createPlace(lines[this.currentIndex].nodes);
+      window.addEventListener('popstate', (e) => {
+        console.log(e);
+      }, false);
     },
     methods: {
       createPlace(nodes) {
@@ -50,5 +62,4 @@
       }
     }
   };
-
 </script>
