@@ -33,7 +33,7 @@ new Vue({
     },
     delete() {
       $.ajax({
-        url: `${config.authApiUrl}/reply/detail`,
+        url: `${config.authApiUrl}/line/delete_reply`,
         type: 'post',
         dataType: 'json',
         data: Object.assign({}, config.mock, {

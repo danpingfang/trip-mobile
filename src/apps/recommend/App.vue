@@ -185,7 +185,6 @@
         item.loading = !isLast;
         item.isEnd = !item.isEmpty && isLast;
         item.startIndex = nextIndex;
-        console.log(this[type].nextIndex);
       }
     }
   };
