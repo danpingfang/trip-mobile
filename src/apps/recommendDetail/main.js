@@ -12,14 +12,26 @@ new Vue({
   el: 'body',
   data() {
     return {
-      replyId: window.jsConfig.replyId
+      replyId: window.jsConfig.replyId,
+      show: false,
+      guideTip: '是否删除该详情',
+      guideConfirmText: '确定',
+      guideCancelText: '取消'
     };
   },
   components: {
     DialogGuide
   },
+  events: {
+    onConfirm() {
+      this.delete();
+    }
+  },
   methods: {
     onDeleteClick() {
+      this.show = true;
+    },
+    delete() {
       $.ajax({
         url: `${config.authApiUrl}/reply/detail`,
         type: 'post',
@@ -32,6 +44,8 @@ new Vue({
           messageTip.show('已删除～', () => {
             redirectUrl();
           });
+        } else {
+          messageTip.show('请先登录~', 'login');
         }
       });
     }

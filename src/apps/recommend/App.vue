@@ -3,7 +3,7 @@
     <p>{{line.title}}</p>
   </div>
   <div class="relative-person" v-if="friendRcmdCount != 0">
-    <p>有{{recommendFriendCount}}个朋友推荐了{{recommendLineCount}}点</p>
+    <p>有{{recommendFriendCount}}个用户推荐了{{recommendLineCount}}点</p>
     <a href="/tls/inner/web/line/rcmd/replys?lineId={{line.lineId]}">
       <ul class="photo-list">
         <li class="photo" v-for="friend in recommendFriendList.list">
