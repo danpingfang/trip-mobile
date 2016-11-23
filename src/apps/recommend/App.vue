@@ -4,7 +4,7 @@
   </div>
   <div class="relative-person" v-if="friendRcmdCount != 0">
     <p>有{{recommendFriendCount}}个用户推荐了{{recommendLineCount}}点</p>
-    <a href="/tls/inner/web/line/rcmd/replys?lineId={{line.lineId]}">
+    <a href="/tls/inner/web/line/rcmd/replys?lineId={{lineId}}">
       <ul class="photo-list">
         <li class="photo" v-for="friend in recommendFriendList.list">
           <img :src="friend.avatar"
@@ -22,12 +22,12 @@
     </div>
     <toggle-more :content="line.remark" max-height="44"></toggle-more>
   </div>
+  <a href=""></a>
   <div class="position-tags position---tags">
     <span class="tag" v-for="line in lineList">
       {{line.targetName}}
     </span>
   </div>
-
   <div class="line-space"></div>
   <div class="recommend-container" v-infinite-scroll="loadMore()"
        infinite-scroll-disabled="busy" infinite-scroll-distance="200">

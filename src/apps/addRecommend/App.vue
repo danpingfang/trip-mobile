@@ -41,6 +41,7 @@
   import config from '../../config';
   import redirectUrl from '../../utils/redirectUrl';
   import messageTip from '../../common/messageTip';
+  import touchBrokenFix from '../../common/touchBrokenFix';
   import PlaceSearch from '../../map/components/PlaceSearch';
 
   const lineId = window.jsConfig.lineId;
@@ -80,6 +81,9 @@
         this.recommendNames = names;
         this.recommendList = list;
       }
+    },
+    ready() {
+      touchBrokenFix();
     },
     methods: {
       onRecommendPlace() {
