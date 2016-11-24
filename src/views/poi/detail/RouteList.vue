@@ -1,19 +1,19 @@
 <template>
   <div class="routes" v-if="data">
-    <p>{{data.lineCount}}篇线路提到{{poiname}}</p>
+    <p>{{data.lineCount}}篇线路提到{{poiName}}</p>
     <ul class="routes-list" v-if="data.lineCount && data.lineCount !== 0"
         v-infinite-scroll="loadMore()"
         infinite-scroll-disabled="busy" infinite-scroll-distance="200">
       <li class="routes-container" v-for="list in data.lines.list">
-        <a href="">
-          <div class="routes-cover cover-container">
+        <a href="/tls/open/web/line/detail?lineId={{list.lineId}}">
+          <div class="routes-cover cover-container"
+               :style="{backgroundImage:'url(' + list.coverImageUrl + ')'}">
             <div class="cover-content">
               <p class="routes-title">{{list.title}}</p>
-              <p class="routes-attractions"
-                 v-for="passDestination in list.passDestinations">
-                {{passDestination.join(' / ')}}
-              </p>
+              <p class="routes-attractions">{{list.passDestinations.join(' /
+                ')}}</p>
             </div>
+            <div class="cover-overlay"></div>
           </div>
           <div class="extra-info">
             <div class="important-information">
