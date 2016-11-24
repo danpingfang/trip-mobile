@@ -1,7 +1,9 @@
 <template>
   <div class="routes" v-if="data">
     <p>{{data.lineCount}}篇线路提到{{poiname}}</p>
-    <ul class="routes-list" v-if="data.lineCount && data.lineCount !== 0">
+    <ul class="routes-list" v-if="data.lineCount && data.lineCount !== 0"
+        v-infinite-scroll="loadMore()"
+        infinite-scroll-disabled="busy" infinite-scroll-distance="200">
       <li class="routes-container" v-for="list in data.lines.list">
         <a href="">
           <div class="routes-cover cover-container">
@@ -9,8 +11,7 @@
               <p class="routes-title">{{list.title}}</p>
               <p class="routes-attractions"
                  v-for="passDestination in list.passDestinations">
-                {{passDestination}}<em
-                v-if="velocityCount !== list.passDestinations.size()">/</em>
+                {{passDestination.join(' / ')}}
               </p>
             </div>
           </div>
@@ -18,7 +19,7 @@
             <div class="important-information">
               <span class="evaluate-days">预计天数：{{list.dayCount}}日游</span>
               <span class="fit-month">适合月份：
-                <em v-if="bestTime in list.bestTimes">{{bestTime}}</em>
+                <em v-for="bestTime in list.bestTimes">{{bestTime}}</em>
               </span>
               <span class="evaluate-fee">预计费用：￥{{list.cost}}元</span>
             </div>
