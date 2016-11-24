@@ -61,15 +61,15 @@
 
 <script>
   import $ from 'jquery';
-  import config from '../../config';
-  import touchBrokenFix from '../../common/touchBrokenFix';
-  import Spinner from '../../components/Spinner';
-  import Empty from '../../components/Empty';
-  import LoadEnd from '../../components/LoadEnd';
-  import ChannelNav from './components/ChannelNav';
-  import MyRecommend from './components/MyRecommend';
-  import OthersRecommend from './components/OthersRecommend';
-  import ToggleMore from './components/ToggleMore';
+  import config from '../../../config';
+  import touchBrokenFix from '../../../common/touchBrokenFix';
+  import Spinner from '../../../components/Spinner';
+  import Empty from '../../../components/Empty';
+  import LoadEnd from '../../../components/LoadEnd';
+  import ChannelNav from '../components/ChannelNav';
+  import MyRecommend from '../components/MyRecommend';
+  import OthersRecommend from '../components/OthersRecommend';
+  import ToggleMore from '../components/ToggleMore';
 
   const jsConfig = window.jsConfig;
   const myRecommendReplys =

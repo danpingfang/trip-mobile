@@ -8,11 +8,11 @@
 </template>
 
 <script>
-  import config from '../../config';
+  import config from '../../../config';
   import $ from 'jquery';
-  import PlaceMap from '../../map/components/PlaceMap';
-  import PlaceCard from '../../map/components/PlaceCard';
-  import PlaceTypesList from '../../map/components/PlaceTypesList';
+  import PlaceMap from '../../../map/components/PlaceMap';
+  import PlaceCard from '../../../map/components/PlaceCard';
+  import PlaceTypesList from '../../../map/components/PlaceTypesList';
   const jsConfig = window.jsConfig;
   const url = `${config.apiUrl}/poi/nearby?` +
     `poiId=${jsConfig.poiId}&poiGroup=${jsConfig.poiGroup}` +

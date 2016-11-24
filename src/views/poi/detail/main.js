@@ -5,5 +5,7 @@ require('./style.scss');
 
 new Vue({
   el: 'body',
-  components: { RouteList }
+  components: {
+    RouteList
+  }
 });

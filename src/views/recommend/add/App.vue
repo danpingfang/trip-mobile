@@ -38,11 +38,11 @@
 
 <script>
   import $ from 'jquery';
-  import config from '../../config';
-  import redirectUrl from '../../utils/redirectUrl';
-  import messageTip from '../../common/messageTip';
-  import touchBrokenFix from '../../common/touchBrokenFix';
-  import PlaceSearch from '../../map/components/PlaceSearch';
+  import config from '../../../config';
+  import redirectUrl from '../../../utils/redirectUrl';
+  import messageTip from '../../../common/messageTip';
+  import touchBrokenFix from '../../../common/touchBrokenFix';
+  import PlaceSearch from '../../../map/components/PlaceSearch';
 
   const lineId = window.jsConfig.lineId;
 

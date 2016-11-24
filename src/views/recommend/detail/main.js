@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import $ from 'jquery';
-import config from '../../config';
-import messageTip from '../../common/messageTip';
-import redirectUrl from '../../utils/redirectUrl';
-import DialogGuide from '../../components/DialogGuide';
+import config from '../../../config';
+import messageTip from '../../../common/messageTip';
+import redirectUrl from '../../../utils/redirectUrl';
+import DialogGuide from '../../../components/DialogGuide';
 
 require('./style.scss');
 require('./delate');

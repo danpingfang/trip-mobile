@@ -7,9 +7,9 @@
 </template>
 
 <script>
-  import getParameterByName from '../../utils/getParameterByName';
-  import PlaceMap from '../../map/components/PlaceMap';
-  import LinePlaceBar from '../../map/components/LinePlaceBar';
+  import getParameterByName from '../../../utils/getParameterByName';
+  import PlaceMap from '../../../map/components/PlaceMap';
+  import LinePlaceBar from '../../../map/components/LinePlaceBar';
 
   let lines = window.jsConfig.lines;
   let currentIndex = 0;

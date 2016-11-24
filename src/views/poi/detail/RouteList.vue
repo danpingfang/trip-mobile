@@ -1,14 +1,18 @@
 <template>
-  <div class="routes">
+  <div class="routes" v-if="data">
     <p>{{data.lineCount}}篇线路提到{{poiname}}</p>
     <ul class="routes-list" v-if="data.lineCount && data.lineCount !== 0">
       <li class="routes-container" v-for="list in data.lines.list">
         <a href="">
-          <div class="routes-cover">
-            <p class="routes-title">{{list.title}}</p>
-            <p class="routes-attractions" v-for="$passDestination in list.passDestinations">
-              {{passDestination}}<em v-if="velocityCount !== list.passDestinations.size()">/</em>
-            </p>
+          <div class="routes-cover cover-container">
+            <div class="cover-content">
+              <p class="routes-title">{{list.title}}</p>
+              <p class="routes-attractions"
+                 v-for="passDestination in list.passDestinations">
+                {{passDestination}}<em
+                v-if="velocityCount !== list.passDestinations.size()">/</em>
+              </p>
+            </div>
           </div>
           <div class="extra-info">
             <div class="important-information">
@@ -32,14 +36,17 @@
       </li>
     </ul>
   </div>
+  <spinner :show="loading"></spinner>
+  <empty :show="isEmpty && !loading" :text="emptyText"></empty>
+  <load-end :is-end="isEnd" :text="endText"></load-end>
 </template>
 
 <script>
   import $ from 'jquery';
-  import config from '../../config';
-  import Spinner from '../../components/Spinner';
-  import Empty from '../../components/Empty';
-  import LoadEnd from '../../components/LoadEnd';
+  import config from '../../../config';
+  import Spinner from '../../../components/Spinner';
+  import Empty from '../../../components/Empty';
+  import LoadEnd from '../../../components/LoadEnd';
 
   const jsConfig = window.jsConfig;
   const poiName = jsConfig.poiName;
@@ -69,10 +76,13 @@
       LoadEnd,
       Spinner
     },
+    created() {
+      this.getLineList();
+    },
     methods: {
       getLineList() {
         $.ajax({
-          url: `${config.authApiUrl}/tls/open/api/v1/line/poi_line`,
+          url: `${config.apiUrl}/line/poi_line`,
           dataType: 'json',
           data: Object.assign({}, config.mock, {
             startIndex: this.startIndex,
@@ -83,9 +93,17 @@
             poiType
           })
         }).done((response) => {
-          if (response.message === 'success') {
-            this.data = response.data;
+          const data = response.data;
+          const nextIndex = data.lines.nextIndex;
+          console.log(nextIndex);
+          const isLast = nextIndex === -1;
+          if (response.code === 0) {
+            this.data = data;
           }
+          this.busy = isLast;
+          this.loading = false;
+          this.isEnd = !this.isEmpty && isLast;
+          this.startIndex = nextIndex;
         });
       }
     }

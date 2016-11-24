@@ -1,147 +1,159 @@
-@import "../../components/styles/extrainfo";
-body{
-  -webkit-text-size-adjust:100%;
+@import "../../../components/styles/extrainfo";
+@import "../../../styles/components/Cover";
+
+body {
+  -webkit-text-size-adjust: 100%;
 }
-.head{
-  background-color: black;
-  color:#FFFFFF;
+
+.head {
+  height: 130px;
+  background-size: cover;
+  background-position: 50% 50%;
+  color: #fff;
   margin-top: 0;
   padding: 22px 12px 16px 12px;
-  .attraction-name{
+  .cover-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .attraction-name {
     text-align: center;
-    .name-ch{
+    .name-ch {
       font-size: 20px;
-      .destination{
+      .destination {
         font-size: 11px;
-        padding:2px 7px;
+        padding: 2px 7px;
         border-radius: 12px;
         line-height: 18px;
-        margin-left:6px;
-        background-color: #EB4C5D;
+        margin-left: 6px;
+        background-color: #eb4c5d;
       }
     }
-    .name-en{
+    .name-en {
       font-size: 15px;
     }
   }
-  .label{
+  .label {
     font-size: 13px;
     margin-top: 47px;
-    span{
-      border:1px solid #FFFFFF;
-      padding:4px 12px;
+    span {
+      border: 1px solid #fff;
+      padding: 4px 12px;
       display: inline-block;
-      margin-left: 8px ;
-      border-radius:16px;
+      margin-left: 8px;
+      border-radius: 16px;
     }
-    em{
-      display:inline-block;
+    em {
+      display: inline-block;
       float: right;
       padding-top: 4px;
     }
-    .icon{
+    .icon {
       font-size: 13px;
-      color:#FFFFFF;
+      color: #fff;
     }
   }
 }
-.detail-container{
+
+.detail-container {
   font-size: 13px;
-  color:#5A5A5A;
-  li{
-    padding:12px 4px 12px 4px;
-    border-bottom: 1px solid #F5F5F5;
+  color: #5a5a5a;
+  li {
+    padding: 12px 4px 12px 4px;
+    border-bottom: 1px solid #f5f5f5;
     margin-left: 12px;
     margin-right: 12px;
-    .icon{
+    .icon {
       margin-right: 16px;
-      color:#5A5A5A;
+      color: #5a5a5a;
     }
-    .traffic{
+    .traffic {
       display: flex;
       display: -webkit-flex;
-      .info{
-        flex:1;
-        -webkit-flex:1;
+      .info {
+        flex: 1;
+        -webkit-flex: 1;
       }
     }
-    .open-time{
+    .open-time {
       display: flex;
       display: -webkit-flex;
-      .info{
-        flex:1;
-        -webkit-flex:1;
+      .info {
+        flex: 1;
+        -webkit-flex: 1;
       }
     }
   }
-  .introduction{
-    padding:12px 16px 20px 16px;
+  .introduction {
+    padding: 12px 16px 20px 16px;
     line-height: 22px;
   }
-  .icon-ditu{
-    float:right;
+  .icon-ditu {
+    float: right;
   }
 }
-.routes{
-  padding-top:16px;
-  p{
-    padding-left:16px;
+
+.routes {
+  padding-top: 16px;
+  p {
+    padding-left: 16px;
     font-size: 13px;
     font-weight: 600;
   }
-  .routes-list{
-    .routes-container{
+  .routes-list {
+    .routes-container {
       margin-top: 12px;
-      .routes-cover{
+      .routes-cover {
         background-color: #101010;
-        color:#FFFFFF;
+        color: #fff;
         text-align: center;
         padding-top: 14px;
         padding-bottom: 14px;
-        margin-left:16px;
+        margin-left: 16px;
         margin-right: 16px;
         border-radius: 6px 6px 0 0;
-        .routes-title{
+        .routes-title {
           font-size: 20px;
         }
-        .routes-attractions{
+        .routes-attractions {
           font-size: 11px;
         }
       }
-      .extra-info{
+      .extra-info {
         margin-left: 16px;
         margin-right: 16px;
-        border:1px solid #F5F5F5;
+        border: 1px solid #f5f5f5;
         border-radius: 0 0 6px 6px;
-        padding:8px 0 12px 12px;
+        padding: 8px 0 12px 12px;
         font-size: 10px;
-        color:#A4A4A4;
+        color: #a4a4a4;
         margin-bottom: 12px;
-        .important-information{
-          span{
+        .important-information {
+          span {
             margin-right: 12px;
             display: inline-block;
             white-space: nowrap;
           }
         }
-        .tags{
+        .tags {
           margin-top: 4px;
-          .tag-item{
-            border:1px solid #C8C7CC;
+          .tag-item {
+            border: 1px solid #c8c7cc;
             border-radius: 3px;
             padding-left: 7px;
             padding-right: 7px;
             margin-right: 6px;
           }
         }
-        .author{
+        .author {
           margin-top: 16px;
-          img{
+          img {
             border-radius: 50%;
             overflow: hidden;
             vertical-align: middle;
           }
-          .name-time{
+          .name-time {
             margin-left: 8px;
             vertical-align: middle;
           }
