@@ -5,6 +5,17 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+.button-line-recommend {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #eb4c5d;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #eb4c5d;
+}
+
 .head {
   position: relative;
   overflow: hidden;

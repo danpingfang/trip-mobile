@@ -1,5 +1,5 @@
 <template>
-  <div class="recommend-container">
+  <div class="recommend-container {{showPlace ? 'hidden-page' : ''}}">
     <div class="recommend-form">
       <textarea class="description" rows=9 placeholder="补充说明..."
                 v-model="description"></textarea>
@@ -12,27 +12,31 @@
         </span>
       </div>
     </div>
-    <div class="refer-recommend">
+    <div class="refer-recommend" v-if="otherRecommendReplys">
       <p class="title">看看其他人如何推荐的</p>
-      <div class="others-recommend" v-for="list in otherRcmdReplys.list">
+      <a href="/tls/open/web/line/reply/detail?replyId={{list.replyId}}"
+         class="others-recommend" v-for="list in otherRecommendReplys.list">
         <div class="author">
-          <span class="name">案例一<em>推荐</em></span>
+          <span class="name">案例<em>推荐</em></span>
         </div>
-        <ol class="attractions" v-if="list.replyNodes.poiName != ''">
-          <li v-for="replyNode in list.replyNodes">{{replyNode.poiName}}</li>
+        <ol class="attractions" v-if="list.rcmdPoiList.length > 0">
+          <li v-for="replyNode in list.rcmdPoiList">{{$index + 1}}.
+            {{replyNode.name}}
+          </li>
         </ol>
         <div class="detail-info">
           <p class="tips">
-           {{list.remark}}
+            {{list.remark}}
           </p>
         </div>
-      </div>
+      </a>
     </div>
     <button @touchend.prevent.stop="onSubmit"
             class="button button-full button-fixed button-fixed--bottom {{ description ? ' button-confirm' : 'button-disable' }}"
             type="button">发布
     </button>
-    <place-search :show.sync="showPlace"></place-search>
+    <place-search :show.sync="showPlace"
+                  :recommend-list="myRecommendList"></place-search>
   </div>
 </template>
 
@@ -44,14 +48,28 @@
   import touchBrokenFix from '../../../common/touchBrokenFix';
   import PlaceSearch from '../../../map/components/PlaceSearch';
 
-  const lineId = window.jsConfig.lineId;
-
+  const jsConfig = window.jsConfig;
+  const lineId = jsConfig.lineId;
+  const myRecommendReplys = jsConfig.myRecommendReplys || {};
+  const otherRecommendReplys = jsConfig.otherRecommendReplys;
+  const recommendNames = [];
+  let myRecommendList = myRecommendReplys.rcmdPoiList;
+  if (myRecommendList) {
+    myRecommendList = myRecommendList.map((item) => {
+      item.isRecommend = true;
+      recommendNames.push(item.name);
+      return item;
+    });
+  }
   export default {
     data() {
       return {
         showPlace: false,
-        description: null,
-        recommendNames: []
+        description: myRecommendReplys.remark,
+        myRecommendReplys,
+        otherRecommendReplys,
+        myRecommendList,
+        recommendNames
       };
     },
     components: {

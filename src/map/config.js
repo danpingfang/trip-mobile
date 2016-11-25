@@ -27,8 +27,8 @@ const placeTypes = {
       icon: {
         url: `${staticUrl}/static/images/btn_mudidisuo2x.png`,
         scaledSize: {
-          width: 32,
-          height: 32
+          width: 18,
+          height: 18
         }
       }
     }
@@ -40,8 +40,8 @@ const placeTypes = {
       icon: {
         url: `${staticUrl}/static/images/btn_zhusuo2x.png`,
         scaledSize: {
-          width: 32,
-          height: 32
+          width: 18,
+          height: 18
         }
       }
     }
@@ -53,8 +53,8 @@ const placeTypes = {
       icon: {
         url: `${staticUrl}/static/images/btn_chisuo2x.png`,
         scaledSize: {
-          width: 32,
-          height: 32
+          width: 18,
+          height: 18
         }
       }
     }
@@ -66,8 +66,8 @@ const placeTypes = {
       icon: {
         url: `${staticUrl}/static/images/btn_wansuo2x.png`,
         scaledSize: {
-          width: 32,
-          height: 32
+          width: 18,
+          height: 18
         }
       }
     }
@@ -79,8 +79,8 @@ const placeTypes = {
       icon: {
         url: `${staticUrl}/static/images/btn_maisuo2x.png`,
         scaledSize: {
-          width: 32,
-          height: 32
+          width: 18,
+          height: 18
         }
       }
     }
@@ -92,8 +92,8 @@ const placeTypes = {
       icon: {
         url: `${staticUrl}/static/images/btn_tuijiansuo2x.png`,
         scaledSize: {
-          width: 32,
-          height: 32
+          width: 18,
+          height: 18
         }
       }
     }
@@ -105,8 +105,8 @@ const placeTypes = {
       icon: {
         url: `${staticUrl}/static/images/btn_jiaotongsuo2x.png`,
         scaledSize: {
-          width: 32,
-          height: 32
+          width: 18,
+          height: 18
         }
       }
     }
@@ -118,8 +118,8 @@ const placeTypes = {
       icon: {
         url: `${staticUrl}/static/images/btn_zhu2x.png`,
         scaledSize: {
-          width: 32,
-          height: 32
+          width: 18,
+          height: 18
         }
       }
     }

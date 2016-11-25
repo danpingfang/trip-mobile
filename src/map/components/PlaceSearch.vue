@@ -1,16 +1,21 @@
 <template>
-  <div class="place-search-container page {{ show ? 'slideIn' : 'slideOut'}}" v-show="show">
+  <div class="place-search-container page {{ show ? 'slideIn' : 'slideOut'}}"
+       v-show="show">
     <search-bar v-ref:search-bar></search-bar>
     <place-select-bar :list="recommendList"></place-select-bar>
     <place-map :show="show" v-ref:place-map></place-map>
     <place-list :list="placeList" :show="showPlaceList"
                 v-ref:placeList></place-list>
-    <button v-if="!recommendList && showPlaceList"
+    <button v-if="!recommendList"
             class="button button-full button-fixed button-fixed--bottom button-disable"
-            type="button">完成</button>
-    <button v-if="recommendList && showPlaceList" @touchend.prevent.stop="confirm"
+            @touchend.prevent.stop="cancel"
+            type="button">取消
+    </button>
+    <button v-if="recommendList"
+            @touchend.prevent.stop="confirm"
             class="button button-full button-fixed button-fixed--bottom button-confirm"
-            type="button">完成</button>
+            type="button">确定
+    </button>
   </div>
 </template>
 
@@ -26,11 +31,10 @@
   import PlaceList from './PlaceList';
 
   export default {
-    props: ['show'],
+    props: ['show', 'recommendList'],
     data() {
       return {
         showPlaceList: false,
-        recommendList: null,
         placeList: null
       };
     },
@@ -105,6 +109,9 @@
         this.showPlaceList = false;
         this.$refs.searchBar.clear();
         this.$dispatch('onAdd', this.recommendList);
+      },
+      cancel() {
+        this.show = false;
       }
     }
   };

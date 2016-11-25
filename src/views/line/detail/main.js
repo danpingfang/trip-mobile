@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import touchBrokenFix from '../../../common/touchBrokenFix';
 
 require('../../../animation/animation');
 require('./style.scss');
@@ -12,6 +13,9 @@ new Vue({
     };
   },
   methods: {
+    ready() {
+      touchBrokenFix();
+    },
     handleTabContent(index) {
       this.show = true;
       this.currentIndex = index;
