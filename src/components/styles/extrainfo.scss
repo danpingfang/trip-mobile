@@ -7,20 +7,31 @@
     color:#525252;
     font-weight: 600;
   }
-  .photo-list{
-    white-space: nowrap;
-    margin-top: 10px;
-    padding-bottom: 10px;
-    overflow: hidden;
-    li{
-      display: inline-block;
-      margin-right: 6px;
-      img{
-        border-radius: 50%;
-        overflow: hidden;
+  .friend-list{
+    display: flex;
+    display: -webkit-flex;
+    .photo-list{
+      flex:1;
+      -webkit-flex:1;
+      white-space: nowrap;
+      margin-top: 10px;
+      padding-bottom: 10px;
+      overflow: hidden;
+      margin-right:57px;
+      li{
+        display: inline-block;
+        margin-right: 6px;
+        img{
+          border-radius: 50%;
+          overflow: hidden;
+        }
       }
     }
+    .icon-arrow-right{
+      line-height: 62px;
+    }
   }
+
 }
 
 .position--tags{
