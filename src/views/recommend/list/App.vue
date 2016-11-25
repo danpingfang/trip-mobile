@@ -54,7 +54,7 @@
   <a
     href="/tls/inner/web/line/rcmd/add?redirectUrl={{currentUrl}}&lineId={{lineId}}">
     <div class="footer">
-      <i class="icon icon-trash"></i> 推荐你所去过的地方
+      <i class="icon icon-add"></i> 推荐你所去过的地方
     </div>
   </a>
 </template>
