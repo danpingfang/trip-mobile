@@ -14,9 +14,8 @@
     display: -webkit-flex;
     justify-content: center;
     -webkit-justify-content: center;
-    padding: 0 0 14px;
+    padding: 14px 0;
     font-size: 14px;
     color: #aaa;
-    background-color: #f5f5f5;
   }
 </style>

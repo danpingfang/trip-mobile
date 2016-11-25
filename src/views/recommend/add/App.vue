@@ -15,9 +15,9 @@
     <div class="refer-recommend" v-if="otherRecommendReplys">
       <p class="title">看看其他人如何推荐的</p>
       <a href="/tls/open/web/line/reply/detail?replyId={{list.replyId}}"
-         class="others-recommend" v-for="list in otherRecommendReplys.list">
+         class="others-recommend" v-for="list in otherRecommendReplys.list.slice(0, 3)">
         <div class="author">
-          <span class="name">案例<em>推荐</em></span>
+          <span class="name">案例{{ text | getText }}<em>推荐</em></span>
         </div>
         <ol class="attractions" v-if="list.rcmdPoiList.length > 0">
           <li v-for="replyNode in list.rcmdPoiList">{{$index + 1}}.
@@ -98,6 +98,11 @@
         }
         this.recommendNames = names;
         this.recommendList = list;
+      }
+    },
+    filters: {
+      getText() {
+        return ['一', '二', '三'][this.$index];
       }
     },
     ready() {
