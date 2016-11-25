@@ -1,7 +1,7 @@
 import getDeviceId from './utils/getDeviceId';
 const domainUrl = 'http://mb-test.lvbaoyou.com';
 const staticUrl = '//s-test.lvbaoyou.com';
-const apiUrl = 'http://tls-test.lvbaoyou.com';
+const apiUrl = 'http://tls.lvbaoyou.com';
 
 export default {
   mock: {},
