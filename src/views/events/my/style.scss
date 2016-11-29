@@ -1,0 +1,94 @@
+body {
+  text-align: center;
+  background: rgba(0,0,0,0.60);
+  color:#FFFFFF;
+}
+.my-photo{
+  margin-top: 14px;
+  img{
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}
+.my-name{
+  margin-top: 6px;
+  font-size: 14px;
+}
+.summary{
+  padding:5px 12px;
+  background: rgba(0,0,0,0.40);
+  border-radius: 26px;
+  font-size: 11px;
+  margin:20px 22.418% 16px 22.418%;
+}
+.route-time{
+  color:#EB4C5D;
+  font-size: 14px;
+}
+.route-country{
+  font-size: 14px;
+}
+.cd-container {
+  position: relative;
+  margin-bottom: 20px;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    height: 100%;
+    width: 1px;
+    background:#B7C0C8;
+  }
+  .cd-timeline-block {
+    position: relative;
+    margin:0 0 10px 0;
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .dot {
+      position: absolute;
+      top: 8px;
+      left: 49.2%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #B7C0C8;
+    }
+    &:nth-child(odd) .cd-timeline-content {
+      margin-left: 53.267%;
+    }
+    &:nth-child(even) .cd-timeline-content {
+      margin-right: 53.267%;
+      text-align: right;
+    }
+
+    .cd-timeline-content{
+      text-align: left;
+      p{
+        margin-top: 8px;
+        font-size: 11px;
+        color:#A0A0A0;
+      }
+    }
+  }
+}
+.btn-footprints-map {
+  position: fixed;
+  right: 0;
+  bottom: 39px;
+  width: 60px;
+  height:36px;
+  line-height: 36px;
+  padding-top: 3px;
+  padding-left: 10px;
+  background:rgba(0,0,0,0.60);
+  border-radius: 41px 0px 0px 41px;
+  .icon{
+    font-size: 20px;
+    color:#FFFFFF;
+  }
+
+}
