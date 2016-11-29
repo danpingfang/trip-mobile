@@ -8,12 +8,12 @@
 
 <script>
   import getParameterByName from '../../../utils/getParameterByName';
+  import touchBrokenFix from '../../../common/touchBrokenFix';
   import PlaceMap from '../../../map/components/PlaceMap';
   import LinePlaceBar from '../../../map/components/LinePlaceBar';
 
   let lines = window.jsConfig.lines;
   let currentIndex = 0;
-  const lineId = getParameterByName('lineId');
   const targetId = getParameterByName('targetId');
   const all = {
     targetName: '总线路',
@@ -42,17 +42,13 @@
     },
     events: {
       onChangeLinePlace(place) {
-        history.pushState({ lineId, targetId: place.targetId }, null, null);
         this.createPlace(place.nodes);
-        history.go(-1);
       }
     },
     ready() {
+      touchBrokenFix();
       this.$refs.map.init();
       this.createPlace(lines[this.currentIndex].nodes);
-      window.addEventListener('popstate', (e) => {
-        console.log(e);
-      }, false);
     },
     methods: {
       createPlace(nodes) {

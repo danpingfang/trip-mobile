@@ -1,6 +1,7 @@
 <template>
   <place-map :show="showPlaceMap" v-ref:map></place-map>
-  <place-card :item="placeItem"></place-card>
+  <place-card :place="place"
+              :style-config="{classNames: 'place-card--medium'}"></place-card>
   <div class="place-types-bar">
     <place-types-list :selected-index="0"
                       :list="placeTypesList"></place-types-list>
@@ -23,7 +24,7 @@
     data() {
       return {
         showPlaceMap: false,
-        placeItem: null,
+        place: null,
         placeTypesList: jsConfig.placeTypesList
       };
     },
@@ -33,9 +34,12 @@
       PlaceTypesList
     },
     events: {
-      onTypesClick(item) {
-        this.clear();
-        this.getNearbyList(item.type);
+      onTypesClick(place) {
+        this.place = null;
+        this.getNearbyList(place.type);
+      },
+      onPlaceMarkerClick(place) {
+        this.place = place;
       }
     },
     created() {
@@ -45,8 +49,6 @@
       this.showPlaceMap = true;
     },
     methods: {
-      clear() {
-      },
       getNearbyList(type) {
         $.ajax({
           url,

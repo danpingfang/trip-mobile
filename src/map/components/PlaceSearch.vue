@@ -6,15 +6,14 @@
     <place-map :show="show" v-ref:place-map></place-map>
     <place-list :list="placeList" :show="showPlaceList"
                 v-ref:placeList></place-list>
-    <button v-if="!recommendList"
+    <button v-if="!recommendList && showPlaceList"
             class="button button-full button-fixed button-fixed--bottom button-disable"
-            @touchend.prevent.stop="cancel"
-            type="button">取消
+            type="button">完成
     </button>
-    <button v-if="recommendList"
+    <button v-if="recommendList && showPlaceList"
             @touchend.prevent.stop="confirm"
             class="button button-full button-fixed button-fixed--bottom button-confirm"
-            type="button">确定
+            type="button">完成
     </button>
   </div>
 </template>

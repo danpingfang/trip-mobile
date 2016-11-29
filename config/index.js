@@ -13,6 +13,7 @@ module.exports = {
     lineMap:'./src/views/line/map/main.js',
     nearby: './src/views/poi/nearby/main.js',
     poiDetail: './src/views/poi/detail/main.js',
+    user: './src/views/user/home/main.js',
   },
   htmlTemplates: {
     login: './src/views/login/index.html',
@@ -24,6 +25,7 @@ module.exports = {
     lineMap:'./src/views/line/map/index.html',
     nearby: './src/views/poi/nearby/index.html',
     poiDetail: './src/views/poi/detail/index.html',
+    user: './src/views/user/home/index.html',
   },
   build: {
     env: require('./prod.env'),

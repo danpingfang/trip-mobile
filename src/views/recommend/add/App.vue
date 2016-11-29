@@ -107,10 +107,15 @@
     },
     ready() {
       touchBrokenFix();
+      window.addEventListener('popstate', () => {
+        history.replaceState(null, null, location.href);
+        this.showPlace = false;
+      }, false);
     },
     methods: {
       onRecommendPlace() {
         this.showPlace = true;
+        history.pushState(null, null, null);
       },
       onSubmit() {
         const recommendList = this.recommendList;

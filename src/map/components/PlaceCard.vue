@@ -1,17 +1,13 @@
 <template>
-  <div class="place-card place-card--arrow-up" v-if="item">
+  <div class="place-card animated {{styleConfig.classNames}}" transition="slide"
+       v-if="place">
     <div class="place-card-content">
-      <div class="place-type place-type--{{item.poiType}}">
-        {{text | getPlaceTypeText}}
-      </div>
       <div class="place-info">
-        <div class="place-title">{{name}}</div>
+        <div class="place-title">{{place.name}}</div>
         <p class="place-location">{{locationText | getLocationText}}</p>
       </div>
+      <!--<img :src="place.coverImageUrl" alt="{{place.name}}">-->
     </div>
-    <button type="button" class="button-place-recommend">
-      <i class="icon icon-place-recommend"></i><span>{{item.isRecommend ? '已推荐' : '推荐该地点'}}</span>
-    </button>
   </div>
 </template>
 
@@ -23,13 +19,13 @@
   import config from '../config';
 
   export default {
-    props: ['item'],
+    props: ['styleConfig', 'place'],
     filters: {
       getPlaceTypeText() {
-        return config.placeTypes[this.item.poiType].text;
+        return config.placeTypes[this.place.poiType].text;
       },
       getLocationText() {
-        return `${this.item.targetNameList.join(' > ')}${this.item.address}`;
+        return `${this.place.targetNameList.join(' > ')}${this.place.address}`;
       }
     }
   };

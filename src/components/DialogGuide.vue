@@ -13,7 +13,7 @@
 </template>
 
 <style lang="scss">
-  @import "./styles/DialogGuide.scss";
+  @import "./styles/_DialogGuide.scss";
 </style>
 
 <script>

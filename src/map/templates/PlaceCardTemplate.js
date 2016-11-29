@@ -4,7 +4,8 @@ export default {
   render(type, place) {
     switch (type) {
       case 'search':
-        return `<div class="place-card place-card--arrow-up">
+        return `<div class="place-card place-card-popup place-card--arrow 
+          place-card--arrow-up">
           <div class="place-card-content">
           <div class="place-type place-type--${place.poiType}">
           ${config.placeTypes[place.poiType].text}
