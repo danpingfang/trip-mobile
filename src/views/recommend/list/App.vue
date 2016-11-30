@@ -27,6 +27,8 @@
       <i class="icon icon-add"></i> 推荐你所去过的地方
     </div>
   </a>
+  <dialog-guide :show.sync="show" :guide-tip="guideTip" :guide-confirm-text="guideConfirmText"
+                :guide-cancel-text="guideCancelText"></dialog-guide>
 </template>
 
 <script>
@@ -37,6 +39,9 @@
   import LoadEnd from '../../../components/LoadEnd';
   import MyRecommend from '../components/MyRecommend';
   import OthersRecommend from '../components/OthersRecommend';
+  import redirectUrl from '../../../utils/redirectUrl';
+  import messageTip from '../../../common/messageTip';
+  import DialogGuide from '../../../components/DialogGuide';
 
   const jsConfig = window.jsConfig;
   const myRecommendList =
@@ -50,6 +55,11 @@
   export default {
     data() {
       return Object.assign({}, {
+        replyId: window.jsConfig.replyId,
+        show: false,
+        guideTip: '编辑',
+        guideConfirmText: '删除',
+        guideCancelText: '取消',
         emptyText: '没有数据哦～',
         endText: '没有更多了',
         lineId,
@@ -65,13 +75,57 @@
       }, jsConfig);
     },
     components: {
+      DialogGuide,
       MyRecommend,
       OthersRecommend,
       Empty,
       LoadEnd,
       Spinner
     },
+    events: {
+      onConfirm() {
+        this.delete();
+      },
+      onEdit() {
+        this.edit();
+      }
+    },
     methods: {
+      onClick() {
+        this.show = true;
+      },
+      edit() {
+        $.ajax({
+          url: `${config.authApiUrl}/line/delete_reply`,
+          type: 'post',
+          dataType: 'json',
+          data: Object.assign({}, config.mock, {
+            replyId: this.replyId
+          })
+        }).done((response) => {
+          if (response.code === 0) {
+            redirectUrl(true);
+          } else {
+            messageTip.show('请先登录~', 'login');
+          }
+        });
+      },
+      delete() {
+        $.ajax({
+          url: `${config.authApiUrl}/line/delete_reply`,
+          type: 'post',
+          dataType: 'json',
+          data: Object.assign({}, config.mock, {
+            replyId: this.replyId
+          })
+        }).done((response) => {
+          if (response.code === 0) {
+            messageTip.show('已删除～');
+          } else {
+            messageTip.show('请先登录~', 'login');
+          }
+        });
+      },
       loadMore() {
         if (!this.busy) {
           this.busy = true;

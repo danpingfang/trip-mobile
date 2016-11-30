@@ -6,7 +6,7 @@ import redirectUrl from '../../../utils/redirectUrl';
 import DialogGuide from '../../../components/DialogGuide';
 
 require('./style.scss');
-require('./delate');
+// require('./delate');
 
 new Vue({
   el: 'body',

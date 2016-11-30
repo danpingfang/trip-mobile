@@ -1,7 +1,8 @@
 <template>
   <div class="dialog-guide" v-if="show">
     <div class="guide-container">
-      <button class="button-guide-tip" type="button">{{ guideTip }}</button>
+      <button class="button-guide-tip" @touchend="onEdit"
+              type="button">{{ guideTip }}</button>
       <button class="button-guide-confirm" type="button"
               @touchend="onConfirm">{{ guideConfirmText }}
       </button>
@@ -20,6 +21,9 @@
   export default {
     props: ['show', 'guideTip', 'guideConfirmText', 'guideCancelText'],
     methods: {
+      onEdit() {
+        this.$dispatch('onEdit');
+      },
       onConfirm() {
         this.$dispatch('onConfirm');
         this.onCancel();

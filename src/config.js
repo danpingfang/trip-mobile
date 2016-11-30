@@ -1,10 +1,13 @@
 import getDeviceId from './utils/getDeviceId';
 const domainUrl = 'http://mb-test.lvbaoyou.com';
 const staticUrl = '//s-test.lvbaoyou.com';
-const apiUrl = 'http://tls-test.lvbaoyou.com';
+const apiUrl = 'http://localhost:4060';
 
 export default {
-  mock: {},
+  mock: {
+    mockAccount: 15222918077,
+    deviceld: 11
+  },
   domainUrl,
   staticUrl,
   apiUrl: `${apiUrl}/tls/open/api/v1`,
